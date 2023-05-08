@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "product-scanner-native-app",
+    "name": "Product Scanner",
     "slug": "product-scanner-native-app",
     "version": "1.0.0",
     "orientation": "portrait",
