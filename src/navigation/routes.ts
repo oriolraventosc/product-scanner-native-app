@@ -1,9 +1,9 @@
-const routes = {
+const Routes = {
   home: "Home",
-  productDetail: "Product-detail",
+  productDetail: "ProductDetail",
   login: "Login",
   register: "Register",
-  myProducts: "My-products",
+  myProducts: "MyProducts",
 };
 
-export default routes;
+export default Routes;
