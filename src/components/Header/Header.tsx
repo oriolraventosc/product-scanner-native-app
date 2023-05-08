@@ -1,4 +1,5 @@
 import React from "react";
+import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/AntDesign";
 import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
@@ -8,6 +9,7 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import colors from "../../styles/colors";
 
@@ -99,15 +101,15 @@ const screenStyle = StyleSheet.create({
   menuContainer: {
     backgroundColor: colors.dark,
     height: "100%",
-    marginTop: "6%",
+    marginTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
   },
   menuItem: {
     fontFamily: "Roboto",
     color: "#ffff",
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: "500",
   },
-  menuIcon: { fontSize: 30, color: colors.main },
+  menuIcon: { fontSize: 25, color: colors.main },
   button: {
     backgroundColor: colors.main,
     fontSize: 30,
