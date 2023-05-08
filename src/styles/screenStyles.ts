@@ -6,6 +6,10 @@ const screenStyles = StyleSheet.create({
     backgroundColor: colors.light,
     height: "100%",
   },
+  menuContainer: {
+    backgroundColor: colors.dark,
+    height: "100%",
+  },
 });
 
 export default screenStyles;
