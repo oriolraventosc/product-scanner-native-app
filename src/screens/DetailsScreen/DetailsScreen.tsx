@@ -25,7 +25,8 @@ const DetailsScreen = (): JSX.Element => {
           bottom: 0,
           left: 0,
           right: 0,
-          marginTop: "6%",
+          paddingTop: "6%",
+          marginTop: showMenu ? "6%" : 0,
 
           transform: [{ scale: scaleValue }, { translateX: offsetValue }],
           borderRadius: showMenu ? 15 : 0,
@@ -37,7 +38,7 @@ const DetailsScreen = (): JSX.Element => {
             justifyContent: "space-between",
             flexDirection: "row",
             alignItems: "center",
-            backgroundColor: colors.dark,
+            backgroundColor: "#fff",
             paddingLeft: 15,
             paddingRight: 15,
             paddingBottom: 15,
@@ -80,7 +81,7 @@ const DetailsScreen = (): JSX.Element => {
             <Text
               style={{
                 fontFamily: "Roboto",
-                color: "#fff",
+                color: colors.dark,
                 fontSize: 35,
                 fontWeight: "700",
                 marginTop: 10,
@@ -90,7 +91,7 @@ const DetailsScreen = (): JSX.Element => {
             </Text>
           </TouchableOpacity>
         </View>
-        <Text>Details</Text>
+        <Text style={{ paddingLeft: 15, paddingRight: 15 }}>Details</Text>
       </Animated.View>
     </>
   );
