@@ -3,16 +3,19 @@ import { Animated, Text, TouchableOpacity, View } from "react-native";
 import Header from "../../components/Header/Header";
 import colors from "../../styles/colors";
 import Icon from "react-native-vector-icons/Feather";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 
 const HomeScreen = (): JSX.Element => {
   const [showMenu, setShowMenu] = useState(false);
   const offsetValue = useRef(new Animated.Value(0)).current;
   const scaleValue = useRef(new Animated.Value(1)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
+  const navigate = useNavigation<ScreenNavigationProp>();
 
   return (
     <>
-      {showMenu && <Header />}
+      <Header />
       <Animated.View
         style={{
           flexGrow: 1,
@@ -54,6 +57,13 @@ const HomeScreen = (): JSX.Element => {
                 useNativeDriver: true,
               }).start();
 
+              Animated.timing(closeButtonOffset, {
+                // YOur Random Value...
+                toValue: !showMenu ? -250 : 0,
+                duration: 300,
+                useNativeDriver: true,
+              }).start();
+
               setShowMenu(!showMenu);
             }}
           >
@@ -62,17 +72,23 @@ const HomeScreen = (): JSX.Element => {
               style={{ color: colors.main, fontSize: 40, marginTop: 15 }}
             />
           </TouchableOpacity>
-          <Text
-            style={{
-              fontFamily: "Roboto",
-              color: "#fff",
-              fontSize: 35,
-              fontWeight: "700",
-              marginTop: 10,
+          <TouchableOpacity
+            onPress={() => {
+              navigate.navigate("Home");
             }}
           >
-            SCANNER
-          </Text>
+            <Text
+              style={{
+                fontFamily: "Roboto",
+                color: "#fff",
+                fontSize: 35,
+                fontWeight: "700",
+                marginTop: 10,
+              }}
+            >
+              SCANNER
+            </Text>
+          </TouchableOpacity>
         </View>
       </Animated.View>
     </>

@@ -1,41 +1,18 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/AntDesign";
+import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import {
   StyleSheet,
   Text,
   View,
   SafeAreaView,
   TouchableOpacity,
-  Pressable,
-  Animated,
 } from "react-native";
-import screenStyles from "../../styles/screenStyles";
 import colors from "../../styles/colors";
-import {
-  useFonts,
-  Roboto_100Thin,
-  Roboto_100Thin_Italic,
-  Roboto_300Light,
-  Roboto_300Light_Italic,
-  Roboto_400Regular,
-  Roboto_400Regular_Italic,
-  Roboto_500Medium,
-  Roboto_500Medium_Italic,
-  Roboto_700Bold,
-  Roboto_700Bold_Italic,
-  Roboto_900Black,
-  Roboto_900Black_Italic,
-} from "@expo-google-fonts/roboto";
-import { ReadableStreamBYOBRequest } from "node:stream/web";
 
 const Header = (): JSX.Element => {
-  var [isPress, setIsPress] = React.useState(false);
-
-  var touchProps = {
-    activeOpacity: 1,
-    style: isPress ? screenStyle.buttonPressed : screenStyle.button, // <-- but you can still apply other style changes
-  };
-
+  const navigate = useNavigation<ScreenNavigationProp>();
   return (
     <>
       <SafeAreaView style={screenStyle.menuContainer}>
@@ -57,8 +34,17 @@ const Header = (): JSX.Element => {
               alignItems: "center",
               gap: 15,
             }}
+            onPress={() => {
+              navigate.navigate("Home");
+            }}
           >
-            <Icon name="home" style={screenStyle.menuIcon} />
+            <Icon
+              name="home"
+              style={screenStyle.menuIcon}
+              onPress={() => {
+                navigate.navigate("Home");
+              }}
+            />
             <Text style={screenStyle.menuItem}>Home</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -68,6 +54,9 @@ const Header = (): JSX.Element => {
               justifyContent: "center",
               alignItems: "center",
               gap: 15,
+            }}
+            onPress={() => {
+              navigate.navigate("ProductDetail");
             }}
           >
             <Icon name="scan1" style={screenStyle.menuIcon} />
