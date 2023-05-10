@@ -5,6 +5,7 @@ import colors from "../../styles/colors";
 import Icon from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
+import ProductInformation from "../../components/ProductInformation/ProductInformation";
 
 const DetailsScreen = (): JSX.Element => {
   const [showMenu, setShowMenu] = useState(false);
@@ -91,7 +92,7 @@ const DetailsScreen = (): JSX.Element => {
             </Text>
           </TouchableOpacity>
         </View>
-        <Text style={{ paddingLeft: 15, paddingRight: 15 }}>Details</Text>
+        <ProductInformation />
       </Animated.View>
     </>
   );
