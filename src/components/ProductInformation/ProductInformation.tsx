@@ -50,9 +50,10 @@ const ProductInformation = (): JSX.Element => {
               style={{
                 paddingLeft: 15,
                 paddingRight: 15,
-                fontSize: 40,
+                fontSize: 35,
                 fontWeight: "bold",
                 textAlign: "center",
+                fontFamily: "Roboto",
               }}
             >
               {product.name.toUpperCase()}
@@ -61,10 +62,11 @@ const ProductInformation = (): JSX.Element => {
               style={{
                 paddingLeft: 15,
                 paddingRight: 15,
-                fontSize: 30,
-                fontWeight: "400",
+                fontSize: 25,
+                fontWeight: "300",
                 textAlign: "center",
                 marginTop: 5,
+                fontFamily: "Roboto",
               }}
             >
               {product.description}
@@ -81,7 +83,14 @@ const ProductInformation = (): JSX.Element => {
                 marginBottom: 20,
               }}
             >
-              <Text style={{ fontSize: 30, textAlign: "center" }}>
+              <Text
+                style={{
+                  fontSize: 25,
+                  textAlign: "center",
+                  fontWeight: "300",
+                  fontFamily: "Roboto",
+                }}
+              >
                 Add to favourites
               </Text>
             </TouchableOpacity>
@@ -98,7 +107,7 @@ const ProductInformation = (): JSX.Element => {
           >
             <Text
               style={{
-                fontSize: 40,
+                fontSize: 30,
                 fontFamily: "Roboto",
                 fontWeight: "700",
                 paddingLeft: 15,
@@ -109,9 +118,9 @@ const ProductInformation = (): JSX.Element => {
             </Text>
             <Text
               style={{
-                fontSize: 25,
+                fontSize: 23,
                 fontFamily: "Roboto",
-                fontWeight: "500",
+                fontWeight: "300",
                 paddingLeft: 15,
                 paddingRight: 15,
               }}
@@ -120,7 +129,7 @@ const ProductInformation = (): JSX.Element => {
             </Text>
             <Text
               style={{
-                fontSize: 40,
+                fontSize: 30,
                 fontFamily: "Roboto",
                 fontWeight: "700",
                 paddingLeft: 15,
@@ -135,9 +144,9 @@ const ProductInformation = (): JSX.Element => {
               <Text
                 key={index}
                 style={{
-                  fontSize: 25,
+                  fontSize: 23,
                   fontFamily: "Roboto",
-                  fontWeight: "500",
+                  fontWeight: "300",
                   paddingLeft: 15,
                   paddingRight: 15,
                   color: colors.main,
@@ -149,7 +158,7 @@ const ProductInformation = (): JSX.Element => {
 
             <Text
               style={{
-                fontSize: 40,
+                fontSize: 30,
                 fontFamily: "Roboto",
                 fontWeight: "700",
                 paddingLeft: 15,
@@ -161,9 +170,9 @@ const ProductInformation = (): JSX.Element => {
             </Text>
             <Text
               style={{
-                fontSize: 25,
+                fontSize: 23,
                 fontFamily: "Roboto",
-                fontWeight: "500",
+                fontWeight: "300",
                 paddingLeft: 15,
                 paddingRight: 15,
               }}
@@ -172,7 +181,7 @@ const ProductInformation = (): JSX.Element => {
             </Text>
             <Text
               style={{
-                fontSize: 40,
+                fontSize: 30,
                 fontFamily: "Roboto",
                 fontWeight: "700",
                 paddingLeft: 15,
@@ -187,9 +196,9 @@ const ProductInformation = (): JSX.Element => {
               <Text
                 key={index}
                 style={{
-                  fontSize: 25,
+                  fontSize: 23,
                   fontFamily: "Roboto",
-                  fontWeight: "500",
+                  fontWeight: "300",
                   paddingLeft: 15,
                   paddingRight: 15,
                 }}

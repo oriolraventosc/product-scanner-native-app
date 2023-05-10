@@ -56,7 +56,7 @@ const SearchBar = (): JSX.Element => {
           <TextInput
             style={{
               color: colors.dark,
-              fontSize: 25,
+              fontSize: 20,
               borderWidth: 2,
               borderRadius: 5,
               paddingHorizontal: 20,
@@ -81,7 +81,7 @@ const SearchBar = (): JSX.Element => {
             onPress={() => loadProducts(product)}
           >
             <Text
-              style={{ fontSize: 25, fontFamily: "Roboto", fontWeight: "500" }}
+              style={{ fontSize: 20, fontFamily: "Roboto", fontWeight: "500" }}
             >
               SEARCH
             </Text>
@@ -119,10 +119,11 @@ const SearchBar = (): JSX.Element => {
                     />
                     <Text
                       style={{
-                        fontSize: 35,
+                        fontSize: 25,
                         fontFamily: "Roboto",
                         textAlign: "center",
                         paddingBottom: 10,
+                        paddingTop: 10,
                       }}
                     >
                       {product.name.toUpperCase()}
