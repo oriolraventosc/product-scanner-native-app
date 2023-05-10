@@ -71,7 +71,7 @@ const DetailsScreen = (): JSX.Element => {
           >
             <Icon
               name="menu"
-              style={{ color: colors.main, fontSize: 40, marginTop: 15 }}
+              style={{ color: colors.main, fontSize: 30, marginTop: 10 }}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -83,7 +83,7 @@ const DetailsScreen = (): JSX.Element => {
               style={{
                 fontFamily: "Roboto",
                 color: colors.dark,
-                fontSize: 35,
+                fontSize: 30,
                 fontWeight: "700",
                 marginTop: 10,
               }}
