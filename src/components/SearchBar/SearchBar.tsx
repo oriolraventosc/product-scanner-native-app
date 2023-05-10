@@ -16,9 +16,13 @@ import colors from "../../styles/colors";
 
 const SearchBar = (): JSX.Element => {
   const navigate = useNavigation<ScreenNavigationProp>();
+  const handlePress = (id: string) => {
+    loadProduct(id);
+    navigate.navigate("ProductDetail");
+  };
   const [product, setProduct] = useState("");
   const products = useAppSelector((state) => state.productActions.myProducts);
-  const { loadProducts } = useProduct();
+  const { loadProducts, loadProduct } = useProduct();
   useEffect(() => {
     loadProducts(product);
   }, [loadProducts, product]);
@@ -92,34 +96,39 @@ const SearchBar = (): JSX.Element => {
               }}
             >
               {products.map((product, index) => (
-                <View
+                <TouchableOpacity
+                  onPress={() => handlePress(product.name)}
                   key={index}
-                  style={{
-                    borderColor: "#c0bcbc57",
-                    borderWidth: 2,
-                    position: "relative",
-                    maxWidth: 500,
-                    borderRadius: 5,
-                    width: "100%",
-                  }}
                 >
-                  <Image
-                    style={{ height: 400 }}
-                    source={{
-                      uri: product.image,
-                    }}
-                  />
-                  <Text
+                  <View
                     style={{
-                      fontSize: 35,
-                      fontFamily: "Roboto",
-                      textAlign: "center",
-                      paddingBottom: 10,
+                      borderColor: "#c0bcbc57",
+                      borderWidth: 2,
+                      position: "relative",
+                      maxWidth: 500,
+                      borderRadius: 5,
+                      width: "100%",
+                      paddingTop: 10,
                     }}
                   >
-                    {product.name.toUpperCase()}
-                  </Text>
-                </View>
+                    <Image
+                      style={{ height: 300 }}
+                      source={{
+                        uri: product.image,
+                      }}
+                    />
+                    <Text
+                      style={{
+                        fontSize: 35,
+                        fontFamily: "Roboto",
+                        textAlign: "center",
+                        paddingBottom: 10,
+                      }}
+                    >
+                      {product.name.toUpperCase()}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
               ))}
             </View>
           )}
