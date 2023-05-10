@@ -5,6 +5,7 @@ import {
 } from "../../redux/features/productSlice/productSlice";
 import { useCallback } from "react";
 import { useAppDispatch } from "../../redux/hooks";
+import { REACT_APP_API_URL } from "@env";
 import {
   openLoadingActionCreator,
   closeLoadingActionCreator,
@@ -12,10 +13,9 @@ import {
 
 const useProduct = () => {
   const dispatch = useAppDispatch();
-  const apiUrl = process.env.REACT_APP_URL_BASE;
   const loadProducts = useCallback(
     async (id: string) => {
-      const url = `${apiUrl}product/search?name=${id}`;
+      const url = `${REACT_APP_API_URL}product/search?name=${id}`;
       try {
         dispatch(openLoadingActionCreator());
         const response = await axios.get(url);
@@ -26,11 +26,11 @@ const useProduct = () => {
         dispatch(closeLoadingActionCreator());
       }
     },
-    [dispatch, apiUrl]
+    [dispatch, REACT_APP_API_URL]
   );
   const loadProduct = useCallback(
     async (id: string) => {
-      const url = `${apiUrl}product/${id}`;
+      const url = `${REACT_APP_API_URL}product/${id}`;
       try {
         dispatch(openLoadingActionCreator());
         const response = await axios.get(url);
@@ -43,7 +43,7 @@ const useProduct = () => {
         dispatch(closeLoadingActionCreator());
       }
     },
-    [apiUrl, dispatch]
+    [REACT_APP_API_URL, dispatch]
   );
   return { loadProducts, loadProduct };
 };
