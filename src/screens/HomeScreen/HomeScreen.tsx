@@ -5,6 +5,7 @@ import colors from "../../styles/colors";
 import Icon from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const HomeScreen = (): JSX.Element => {
   const [showMenu, setShowMenu] = useState(false);
@@ -90,6 +91,7 @@ const HomeScreen = (): JSX.Element => {
             </Text>
           </TouchableOpacity>
         </View>
+        <SearchBar />
       </Animated.View>
     </>
   );
