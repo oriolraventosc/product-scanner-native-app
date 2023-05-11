@@ -6,8 +6,8 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Image,
-  FlatList,
 } from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import { useNavigation } from "@react-navigation/native";
 import { useAppSelector } from "../../redux/hooks";
@@ -62,6 +62,7 @@ const SearchBar = (): JSX.Element => {
               paddingHorizontal: 20,
               paddingVertical: 20,
               fontFamily: "Roboto",
+              borderColor: colors.dark,
             }}
             placeholder="Search here..."
             onChangeText={setProduct}
@@ -131,6 +132,23 @@ const SearchBar = (): JSX.Element => {
                   </View>
                 </TouchableOpacity>
               ))}
+            </View>
+          )}
+          {products.length === 0 && (
+            <View
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 10,
+                marginTop: 100,
+              }}
+            >
+              <Icon
+                name="selection-search"
+                style={{ fontSize: 150, color: colors.main }}
+              />
+              <Text style={{ fontSize: 30 }}>No results found...</Text>
             </View>
           )}
         </View>
