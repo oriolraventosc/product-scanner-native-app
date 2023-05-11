@@ -6,6 +6,8 @@ import Icon from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import ProductInformation from "../../components/ProductInformation/ProductInformation";
+import { useAppSelector } from "../../redux/hooks";
+import Loader from "../../components/Loader/Loader";
 
 const DetailsScreen = (): JSX.Element => {
   const [showMenu, setShowMenu] = useState(false);
@@ -13,9 +15,11 @@ const DetailsScreen = (): JSX.Element => {
   const scaleValue = useRef(new Animated.Value(1)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
   const navigate = useNavigation<ScreenNavigationProp>();
+  const loading = useAppSelector((state) => state.uiActions.loading);
 
   return (
     <>
+      {loading && <Loader />}
       <Header />
       <Animated.View
         style={{
