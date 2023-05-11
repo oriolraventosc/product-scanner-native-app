@@ -27,7 +27,7 @@ const ProductInformation = (): JSX.Element => {
             position: "relative",
             flexDirection: "column",
             marginTop: 1,
-            marginBottom: 15,
+            marginBottom: 5,
           }}
         >
           <View
@@ -80,7 +80,7 @@ const ProductInformation = (): JSX.Element => {
                 paddingBottom: 15,
                 borderRadius: 5,
                 marginTop: 20,
-                marginBottom: 20,
+                marginBottom: 30,
               }}
             >
               <Text
@@ -112,6 +112,7 @@ const ProductInformation = (): JSX.Element => {
                 fontWeight: "700",
                 paddingLeft: 15,
                 paddingRight: 15,
+                paddingTop: 25,
               }}
             >
               Ingredients
