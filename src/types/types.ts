@@ -11,3 +11,23 @@ export interface Product {
   howToUse: string;
   sideEffects: string;
 }
+
+export interface UserLoginData {
+  id: string;
+  accessToken: string;
+  email: string;
+}
+
+export interface UserState extends UserLoginData {
+  isLogged: boolean;
+}
+
+export interface UserCredentials {
+  email: string;
+  password: string;
+}
+
+export interface JwtCustomPayload {
+  id: string;
+  email: string;
+}
