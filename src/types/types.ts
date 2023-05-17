@@ -16,6 +16,8 @@ export interface UserLoginData {
   id: string;
   accessToken: string;
   email: string;
+  name: string;
+  favouriteProducts: Product[];
 }
 
 export interface UserState extends UserLoginData {

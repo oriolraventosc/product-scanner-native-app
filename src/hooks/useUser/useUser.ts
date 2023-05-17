@@ -29,9 +29,17 @@ const useUser = () => {
     try {
       dispatch(openLoadingActionCreator());
       const response = await axios.post(url, data);
-      const { accessToken, email } = response.data;
+      const { accessToken, email, name, favouriteProducts } = response.data;
       const loggedUser = decodeToken(accessToken);
-      dispatch(loginActionCreator({ ...loggedUser, accessToken, email }));
+      dispatch(
+        loginActionCreator({
+          ...loggedUser,
+          accessToken,
+          email,
+          name,
+          favouriteProducts,
+        })
+      );
       await AsyncStorage.setItem("token", accessToken);
       dispatch(closeLoadingActionCreator());
     } catch {
