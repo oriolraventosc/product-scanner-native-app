@@ -12,12 +12,16 @@ describe("Given a userReducer", () => {
         email: "example@gmail.com",
         accessToken: "12345678910",
         id: "12345678910",
+        favouriteProducts: [],
+        name: "example",
       });
       const expectedState = {
         email: "example@gmail.com",
         accessToken: "12345678910",
         id: "12345678910",
         isLogged: true,
+        favouriteProducts: [],
+        name: "example",
       };
 
       const newState = userReducer(userInitialState, action);
@@ -34,6 +38,8 @@ describe("Given a userReducer", () => {
         accessToken: "12345678910",
         id: "12345678910",
         isLogged: true,
+        name: "",
+        favouriteProducts: [],
       };
 
       const newState = userReducer(initialState, action);

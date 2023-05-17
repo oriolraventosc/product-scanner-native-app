@@ -6,7 +6,9 @@ export const userInitialState: UserState = {
   id: "",
   accessToken: "",
   email: "",
+  name: "",
   isLogged: false,
+  favouriteProducts: [],
 };
 
 const userSlice = createSlice({
