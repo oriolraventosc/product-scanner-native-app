@@ -30,8 +30,8 @@ const useUser = () => {
 
   const login = useCallback(async (data: UserCredentials) => {
     const url = `${REACT_APP_API_URL}user/login`;
-    dispatch(openLoadingActionCreator());
     try {
+      dispatch(openLoadingActionCreator());
       const response = await axios.post(url, data);
       const { accessToken, email, name, favouriteProducts } = response.data;
       const loggedUser = decodeToken(accessToken);

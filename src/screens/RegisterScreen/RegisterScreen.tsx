@@ -243,13 +243,10 @@ const RegisterScreen = (): JSX.Element => {
               style={
                 buttonDisabled ? loginStyles.buttonDisabled : loginStyles.button
               }
+              onPress={onSubmit}
             >
-              <Text
-                onPress={onSubmit}
-                testID="submitButton"
-                style={{ fontSize: 25 }}
-              >
-                Register
+              <Text testID="submitButton" style={{ fontSize: 25 }}>
+                REGISTER
               </Text>
             </TouchableOpacity>
           </View>
@@ -263,7 +260,7 @@ const RegisterScreen = (): JSX.Element => {
               }}
               onPress={() => navigate.navigate("Login")}
             >
-              Already a user? Login now
+              Already a user? Login here
             </Text>
           </TouchableOpacity>
         </View>

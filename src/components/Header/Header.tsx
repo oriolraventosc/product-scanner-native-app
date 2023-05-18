@@ -92,7 +92,7 @@ const Header = (): JSX.Element => {
           >
             <Icon name="login" style={screenStyle.menuIcon} />
 
-            <Text style={screenStyle.menuItem}>Log in</Text>
+            <Text style={screenStyle.menuItem}>Login</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
