@@ -94,6 +94,7 @@ const SearchBar = (): JSX.Element => {
               style={{
                 marginTop: 10,
                 marginBottom: 10,
+                gap: 10,
               }}
             >
               {products.map((product, index) => (

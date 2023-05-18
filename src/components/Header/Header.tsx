@@ -86,6 +86,9 @@ const Header = (): JSX.Element => {
               alignItems: "center",
               gap: 15,
             }}
+            onPress={() => {
+              navigate.navigate("Login");
+            }}
           >
             <Icon name="login" style={screenStyle.menuIcon} />
 

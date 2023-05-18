@@ -2,6 +2,8 @@ import { useAppDispatch } from "../../redux/hooks";
 import { REACT_APP_API_URL } from "@env";
 import { useCallback } from "react";
 import { UserCredentials } from "../../types/types";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import {
   closeLoadingActionCreator,
   openLoadingActionCreator,
@@ -12,22 +14,24 @@ import { loginActionCreator } from "../../redux/features/userSlice/userSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const useUser = () => {
+  const navigate = useNavigation<ScreenNavigationProp>();
   const dispatch = useAppDispatch();
   const register = useCallback(async (data: UserCredentials) => {
     const url = `${REACT_APP_API_URL}user/register`;
+    dispatch(openLoadingActionCreator());
     try {
-      dispatch(openLoadingActionCreator());
       await axios.post(url, data);
+      navigate.navigate("Login");
       dispatch(closeLoadingActionCreator());
     } catch {
-      closeLoadingActionCreator();
+      dispatch(closeLoadingActionCreator());
     }
   }, []);
 
   const login = useCallback(async (data: UserCredentials) => {
     const url = `${REACT_APP_API_URL}user/login`;
+    dispatch(openLoadingActionCreator());
     try {
-      dispatch(openLoadingActionCreator());
       const response = await axios.post(url, data);
       const { accessToken, email, name, favouriteProducts } = response.data;
       const loggedUser = decodeToken(accessToken);
@@ -41,9 +45,10 @@ const useUser = () => {
         })
       );
       await AsyncStorage.setItem("token", accessToken);
+      navigate.navigate("Home");
       dispatch(closeLoadingActionCreator());
     } catch {
-      closeLoadingActionCreator();
+      dispatch(closeLoadingActionCreator());
     }
   }, []);
 
