@@ -216,13 +216,10 @@ const LoginScreen = (): JSX.Element => {
               style={
                 buttonDisabled ? loginStyles.buttonDisabled : loginStyles.button
               }
+              onPress={onSubmit}
             >
-              <Text
-                onPress={onSubmit}
-                testID="submitButton"
-                style={{ fontSize: 25 }}
-              >
-                Login
+              <Text testID="submitButton" style={{ fontSize: 25 }}>
+                LOGIN
               </Text>
             </TouchableOpacity>
           </View>
