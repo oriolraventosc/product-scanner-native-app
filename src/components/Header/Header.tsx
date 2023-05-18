@@ -12,8 +12,14 @@ import {
   Platform,
 } from "react-native";
 import colors from "../../styles/colors";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { logoutActionCreator } from "../../redux/features/userSlice/userSlice";
+import useToken from "../../hooks/useToken/useToken";
 
 const Header = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const { removeToken } = useToken();
+  const isLogged = useAppSelector((state) => state.userActions.isLogged);
   const navigate = useNavigation<ScreenNavigationProp>();
   return (
     <>
@@ -87,12 +93,14 @@ const Header = (): JSX.Element => {
               gap: 15,
             }}
             onPress={() => {
-              navigate.navigate("Login");
+              isLogged ? removeToken() : navigate.navigate("Login");
             }}
           >
             <Icon name="login" style={screenStyle.menuIcon} />
 
-            <Text style={screenStyle.menuItem}>Login</Text>
+            <Text style={screenStyle.menuItem}>
+              {isLogged ? "Logout" : "Login"}
+            </Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
