@@ -185,7 +185,7 @@ const RegisterScreen = (): JSX.Element => {
                 width: "90%",
               }}
             >
-              <Icon name="user" color={colors.main} size={30} />
+              <Icon name="user" color={colors.main} size={25} />
               <TextInput
                 value={userData.name}
                 testID="name"
@@ -193,7 +193,7 @@ const RegisterScreen = (): JSX.Element => {
                 textContentType="name"
                 style={{
                   color: colors.dark,
-                  fontSize: 22,
+                  fontSize: 20,
                   flex: 1,
                 }}
                 onChangeText={(data: string) => {
@@ -214,7 +214,7 @@ const RegisterScreen = (): JSX.Element => {
                 width: "90%",
               }}
             >
-              <IconEmail name="email" color={colors.main} size={30} />
+              <IconEmail name="email" color={colors.main} size={25} />
               <TextInput
                 value={userData.email}
                 testID="email"
@@ -222,7 +222,7 @@ const RegisterScreen = (): JSX.Element => {
                 textContentType="username"
                 style={{
                   color: colors.dark,
-                  fontSize: 22,
+                  fontSize: 20,
                   flex: 1,
                 }}
                 onChangeText={(data: string) => {
@@ -242,7 +242,7 @@ const RegisterScreen = (): JSX.Element => {
                 width: "90%",
               }}
             >
-              <Icon name="lock" color={colors.main} size={30} />
+              <Icon name="lock" color={colors.main} size={25} />
               <TextInput
                 value={userData.password}
                 secureTextEntry={true}
@@ -251,7 +251,7 @@ const RegisterScreen = (): JSX.Element => {
                 textContentType="password"
                 style={{
                   color: colors.dark,
-                  fontSize: 22,
+                  fontSize: 20,
                   flex: 1,
                 }}
                 onChangeText={(data: string) => {
@@ -265,7 +265,7 @@ const RegisterScreen = (): JSX.Element => {
               }
               onPress={onSubmit}
             >
-              <Text testID="submitButton" style={{ fontSize: 25 }}>
+              <Text testID="submitButton" style={{ fontSize: 23 }}>
                 REGISTER
               </Text>
             </TouchableOpacity>
@@ -273,14 +273,14 @@ const RegisterScreen = (): JSX.Element => {
           <TouchableOpacity>
             <Text
               style={{
-                fontSize: 22,
+                fontSize: 20,
                 color: colors.main,
                 fontFamily: "Roboto",
                 textAlign: "center",
               }}
               onPress={() => navigate.navigate("Login")}
             >
-              Already a user? Login here
+              Already a member? Login here
             </Text>
           </TouchableOpacity>
         </View>
