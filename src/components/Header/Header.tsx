@@ -64,7 +64,7 @@ const Header = (): JSX.Element => {
               gap: 15,
             }}
             onPress={() => {
-              navigate.navigate("ProductDetail");
+              navigate.navigate("Scanner");
             }}
           >
             <Icon name="scan1" style={screenStyle.menuIcon} />
