@@ -7,6 +7,7 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
+import IconEmail from "react-native-vector-icons/Fontisto";
 import Header from "../../components/Header/Header";
 import colors from "../../styles/colors";
 import Icon from "react-native-vector-icons/Feather";
@@ -158,7 +159,7 @@ const RegisterScreen = (): JSX.Element => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              gap: 30,
+              gap: 50,
             }}
           >
             <Text
@@ -172,73 +173,92 @@ const RegisterScreen = (): JSX.Element => {
             >
               Register
             </Text>
-            <TextInput
-              value={userData.name}
-              testID="name"
-              placeholder="Name"
-              textContentType="name"
+            <View
               style={{
-                backgroundColor: "#d9d0d0a8",
-                color: colors.dark,
-                fontSize: 22,
-                height: 60,
+                flexDirection: "row",
+                borderBottomWidth: 1,
+                borderColor: colors.dark,
                 paddingBottom: 10,
-                paddingTop: 10,
-                paddingLeft: 20,
-                paddingRight: 20,
-                width: "85%",
-                borderRadius: 25,
-                textAlign: "center",
+                gap: 15,
+                paddingLeft: 15,
+                paddingRight: 15,
+                width: "90%",
               }}
-              onChangeText={(data: string) => {
-                changeUserData(data, "name");
-              }}
-            />
-            <TextInput
-              value={userData.email}
-              testID="email"
-              placeholder="E-mail"
-              textContentType="username"
+            >
+              <Icon name="user" color={colors.main} size={30} />
+              <TextInput
+                value={userData.name}
+                testID="name"
+                placeholder="Name"
+                textContentType="name"
+                style={{
+                  color: colors.dark,
+                  fontSize: 22,
+                  flex: 1,
+                }}
+                onChangeText={(data: string) => {
+                  changeUserData(data, "name");
+                }}
+              />
+            </View>
+
+            <View
               style={{
-                backgroundColor: "#d9d0d0a8",
-                color: colors.dark,
-                fontSize: 22,
-                height: 60,
+                flexDirection: "row",
+                borderBottomWidth: 1,
+                borderColor: colors.dark,
                 paddingBottom: 10,
-                paddingTop: 10,
-                paddingLeft: 20,
-                paddingRight: 20,
-                width: "85%",
-                borderRadius: 25,
-                textAlign: "center",
+                gap: 15,
+                paddingLeft: 15,
+                paddingRight: 15,
+                width: "90%",
               }}
-              onChangeText={(data: string) => {
-                changeUserData(data, "email");
-              }}
-            />
-            <TextInput
-              value={userData.password}
-              secureTextEntry={true}
-              testID="password"
-              placeholder="Password"
-              textContentType="password"
+            >
+              <IconEmail name="email" color={colors.main} size={30} />
+              <TextInput
+                value={userData.email}
+                testID="email"
+                placeholder="E-mail"
+                textContentType="username"
+                style={{
+                  color: colors.dark,
+                  fontSize: 22,
+                  flex: 1,
+                }}
+                onChangeText={(data: string) => {
+                  changeUserData(data, "email");
+                }}
+              />
+            </View>
+            <View
               style={{
-                backgroundColor: "#d9d0d0a8",
-                color: colors.dark,
-                fontSize: 22,
+                flexDirection: "row",
+                borderBottomWidth: 1,
+                borderColor: colors.dark,
                 paddingBottom: 10,
-                paddingTop: 10,
-                paddingLeft: 20,
-                paddingRight: 20,
-                width: "85%",
-                borderRadius: 25,
-                textAlign: "center",
-                height: 60,
+                gap: 15,
+                paddingLeft: 15,
+                paddingRight: 15,
+                width: "90%",
               }}
-              onChangeText={(data: string) => {
-                changeUserData(data, "password");
-              }}
-            />
+            >
+              <Icon name="lock" color={colors.main} size={30} />
+              <TextInput
+                value={userData.password}
+                secureTextEntry={true}
+                testID="password"
+                placeholder="Password"
+                textContentType="password"
+                style={{
+                  color: colors.dark,
+                  fontSize: 22,
+                  flex: 1,
+                }}
+                onChangeText={(data: string) => {
+                  changeUserData(data, "password");
+                }}
+              />
+            </View>
             <TouchableOpacity
               style={
                 buttonDisabled ? loginStyles.buttonDisabled : loginStyles.button
