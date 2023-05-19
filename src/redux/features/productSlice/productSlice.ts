@@ -35,6 +35,13 @@ const ProductSlice = createSlice({
       ...initialState,
       product: { ...action.payload },
     }),
+    loadFavouriteProducts: (
+      initialState,
+      action: PayloadAction<Product[]>
+    ) => ({
+      ...initialState,
+      myProducts: [...action.payload],
+    }),
   },
 });
 
@@ -43,4 +50,5 @@ export const ProductReducer = ProductSlice.reducer;
 export const {
   loadProducts: loadProductsActionCreator,
   loadProduct: loadProductInformationActionCreator,
+  loadFavouriteProducts: loadFavouriteProductsActionCreator,
 } = ProductSlice.actions;
