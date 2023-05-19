@@ -4,6 +4,7 @@ const Routes = {
   login: "Login",
   register: "Register",
   myProducts: "MyProducts",
+  scanner: "Scanner",
 };
 
 export default Routes;
