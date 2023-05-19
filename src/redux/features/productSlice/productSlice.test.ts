@@ -25,7 +25,8 @@ describe("Given a Product reducer", () => {
           sideEffects: "",
           howToUse: "",
         },
-        myProducts: [productMock],
+        productsList: [productMock],
+        myProducts: [],
       };
 
       const newState = ProductReducer(ProductInitialState, action);
@@ -40,6 +41,7 @@ describe("Given a Product reducer", () => {
       const expectedState = {
         product: productMock,
         myProducts: [],
+        productsList: [],
       };
 
       const newState = ProductReducer(ProductInitialState, action);
@@ -66,6 +68,7 @@ describe("Given a Product reducer", () => {
           howToUse: "",
         },
         myProducts: [productMock],
+        productsList: [],
       };
 
       const newState = ProductReducer(ProductInitialState, action);
