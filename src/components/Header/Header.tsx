@@ -79,6 +79,9 @@ const Header = (): JSX.Element => {
               alignItems: "center",
               gap: 15,
             }}
+            onPress={() => {
+              navigate.navigate("MyProducts");
+            }}
           >
             <Icon name="shoppingcart" style={screenStyle.menuIcon} />
 

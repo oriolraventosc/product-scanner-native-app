@@ -21,7 +21,7 @@ const SearchBar = (): JSX.Element => {
     navigate.navigate("ProductDetail");
   };
   const [product, setProduct] = useState("");
-  const products = useAppSelector((state) => state.productActions.myProducts);
+  const products = useAppSelector((state) => state.productActions.productsList);
   const { loadProducts, loadProduct } = useProduct();
   useEffect(() => {
     loadProducts(product);

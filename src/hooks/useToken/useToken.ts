@@ -6,6 +6,7 @@ import {
   loginActionCreator,
   logoutActionCreator,
 } from "../../redux/features/userSlice/userSlice";
+import { deleteFavouriteProductsActionCreator } from "../../redux/features/productSlice/productSlice";
 
 const useToken = () => {
   const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ const useToken = () => {
   const removeToken = async () => {
     await AsyncStorage.removeItem("token");
     dispatch(logoutActionCreator());
+    dispatch(deleteFavouriteProductsActionCreator());
   };
 
   return { checkToken, removeToken };

@@ -4,6 +4,7 @@ import { Product } from "../../../types/types";
 interface ProductState {
   product: Product;
   myProducts: Product[];
+  productsList: Product[];
 }
 
 export const ProductInitialState: ProductState = {
@@ -21,6 +22,7 @@ export const ProductInitialState: ProductState = {
     howToUse: "",
   },
   myProducts: [],
+  productsList: [],
 };
 
 const ProductSlice = createSlice({
@@ -29,7 +31,7 @@ const ProductSlice = createSlice({
   reducers: {
     loadProducts: (initialState, action: PayloadAction<Product[]>) => ({
       ...initialState,
-      myProducts: [...action.payload],
+      productsList: [...action.payload],
     }),
     loadProduct: (initialState, action: PayloadAction<Product>) => ({
       ...initialState,
@@ -42,6 +44,10 @@ const ProductSlice = createSlice({
       ...initialState,
       myProducts: [...action.payload],
     }),
+    deleteFavouriteProducts: (initialState) => ({
+      ...initialState,
+      myProducts: [],
+    }),
   },
 });
 
@@ -51,4 +57,5 @@ export const {
   loadProducts: loadProductsActionCreator,
   loadProduct: loadProductInformationActionCreator,
   loadFavouriteProducts: loadFavouriteProductsActionCreator,
+  deleteFavouriteProducts: deleteFavouriteProductsActionCreator,
 } = ProductSlice.actions;
