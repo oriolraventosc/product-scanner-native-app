@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   loadProductsActionCreator,
   loadProductInformationActionCreator,
+  loadFavouriteProductsActionCreator,
 } from "../../redux/features/productSlice/productSlice";
 import { useCallback } from "react";
 import { useAppDispatch } from "../../redux/hooks";
@@ -10,9 +11,11 @@ import {
   openLoadingActionCreator,
   closeLoadingActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const useProduct = () => {
   const dispatch = useAppDispatch();
+  const token = AsyncStorage.getItem("token");
   const loadProducts = useCallback(
     async (id: string) => {
       const url = `${REACT_APP_API_URL}product/search?name=${id}`;
@@ -45,7 +48,24 @@ const useProduct = () => {
     },
     [REACT_APP_API_URL, dispatch]
   );
-  return { loadProducts, loadProduct };
+
+  const loadFavouriteProducts = useCallback(async (email: string) => {
+    const url = `${REACT_APP_API_URL}product/favourite-products/${email}`;
+    try {
+      dispatch(openLoadingActionCreator());
+      const response = await axios.get(url, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const apiResponse = response.data;
+      dispatch(
+        loadFavouriteProductsActionCreator(apiResponse.favouriteProducts)
+      );
+      dispatch(closeLoadingActionCreator());
+    } catch {
+      dispatch(closeLoadingActionCreator());
+    }
+  }, []);
+  return { loadProducts, loadProduct, loadFavouriteProducts };
 };
 
 export default useProduct;

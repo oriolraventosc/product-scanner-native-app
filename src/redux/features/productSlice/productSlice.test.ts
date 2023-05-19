@@ -1,6 +1,7 @@
 import {
   ProductInitialState,
   ProductReducer,
+  loadFavouriteProductsActionCreator,
   loadProductInformationActionCreator,
   loadProductsActionCreator,
 } from "./productSlice";
@@ -39,6 +40,32 @@ describe("Given a Product reducer", () => {
       const expectedState = {
         product: productMock,
         myProducts: [],
+      };
+
+      const newState = ProductReducer(ProductInitialState, action);
+
+      expect(newState).toStrictEqual(expectedState);
+    });
+  });
+
+  describe("When it is invoked with the method loadFavouriteProducts", () => {
+    test("Then it should return a list of user favourite products", () => {
+      const action = loadFavouriteProductsActionCreator([productMock]);
+      const expectedState = {
+        product: {
+          name: "",
+          image: "",
+          ingredients: "",
+          description: "",
+          brand: [""],
+          weight: 0,
+          benefits: [""],
+          ean: "",
+          status: "",
+          sideEffects: "",
+          howToUse: "",
+        },
+        myProducts: [productMock],
       };
 
       const newState = ProductReducer(ProductInitialState, action);
