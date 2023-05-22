@@ -1,5 +1,7 @@
 import React from "react";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import { useAppSelector } from "../../redux/hooks";
+import { List } from "react-native-paper";
 import {
   Text,
   SafeAreaView,
@@ -10,6 +12,7 @@ import {
 } from "react-native";
 import colors from "../../styles/colors";
 import { Dimensions } from "react-native";
+import { Accordion } from "react-native-paper/lib/typescript/src/components/List/List";
 
 const { width } = Dimensions.get("window");
 
@@ -41,11 +44,27 @@ const ProductInformation = (): JSX.Element => {
             <Image
               style={{
                 height: 400,
+                position: "relative",
               }}
               source={{
                 uri: product.image,
               }}
             />
+            <TouchableOpacity
+              style={{ position: "absolute", right: 30, top: 30 }}
+            >
+              <Icon
+                name="favorite"
+                style={{
+                  fontSize: 36,
+                  color: colors.dark,
+
+                  backgroundColor: colors.main,
+                  borderRadius: 5,
+                  padding: 10,
+                }}
+              />
+            </TouchableOpacity>
             <Text
               style={{
                 paddingLeft: 15,
@@ -67,33 +86,11 @@ const ProductInformation = (): JSX.Element => {
                 textAlign: "center",
                 marginTop: 5,
                 fontFamily: "Roboto",
+                paddingBottom: 45,
               }}
             >
               {product.description}
             </Text>
-            <TouchableOpacity
-              style={{
-                backgroundColor: colors.main,
-                marginLeft: 20,
-                marginRight: 20,
-                paddingTop: 15,
-                paddingBottom: 15,
-                borderRadius: 5,
-                marginTop: 20,
-                marginBottom: 30,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 25,
-                  textAlign: "center",
-                  fontWeight: "300",
-                  fontFamily: "Roboto",
-                }}
-              >
-                Add to favourites
-              </Text>
-            </TouchableOpacity>
           </View>
           <View
             style={{
@@ -113,81 +110,7 @@ const ProductInformation = (): JSX.Element => {
                 paddingLeft: 15,
                 paddingRight: 15,
                 paddingTop: 25,
-              }}
-            >
-              Ingredients
-            </Text>
-            <Text
-              style={{
-                fontSize: 23,
-                fontFamily: "Roboto",
-                fontWeight: "300",
-                paddingLeft: 15,
-                paddingRight: 15,
-              }}
-            >
-              {product.ingredients}
-            </Text>
-            <Text
-              style={{
-                fontSize: 30,
-                fontFamily: "Roboto",
-                fontWeight: "700",
-                paddingLeft: 15,
-                paddingRight: 15,
-                paddingTop: 25,
-              }}
-            >
-              Brands
-            </Text>
-
-            {product.brand.map((brand, index) => (
-              <Text
-                key={index}
-                style={{
-                  fontSize: 23,
-                  fontFamily: "Roboto",
-                  fontWeight: "300",
-                  paddingLeft: 15,
-                  paddingRight: 15,
-                  color: colors.main,
-                }}
-              >
-                {brand}
-              </Text>
-            ))}
-
-            <Text
-              style={{
-                fontSize: 30,
-                fontFamily: "Roboto",
-                fontWeight: "700",
-                paddingLeft: 15,
-                paddingRight: 15,
-                paddingTop: 25,
-              }}
-            >
-              Measures
-            </Text>
-            <Text
-              style={{
-                fontSize: 23,
-                fontFamily: "Roboto",
-                fontWeight: "300",
-                paddingLeft: 15,
-                paddingRight: 15,
-              }}
-            >
-              Net content: {product.weight}g
-            </Text>
-            <Text
-              style={{
-                fontSize: 30,
-                fontFamily: "Roboto",
-                fontWeight: "700",
-                paddingLeft: 15,
-                paddingRight: 15,
-                paddingTop: 25,
+                textAlign: "center",
               }}
             >
               Nutritional benefits
@@ -202,11 +125,125 @@ const ProductInformation = (): JSX.Element => {
                   fontWeight: "300",
                   paddingLeft: 15,
                   paddingRight: 15,
+                  textAlign: "center",
+                  paddingBottom: 10,
                 }}
               >
-                ·{benefit}
+                {benefit}
               </Text>
             ))}
+            <List.Accordion
+              title="How to use"
+              style={{
+                marginLeft: 15,
+                marginRight: 15,
+                marginBottom: 5,
+                marginTop: 25,
+                backgroundColor: colors.main,
+              }}
+              titleStyle={{
+                fontSize: 23,
+                fontFamily: "Roboto",
+                fontWeight: "400",
+                color: colors.dark,
+              }}
+            >
+              <List.Item
+                title={`${product.howToUse}`}
+                titleNumberOfLines={60}
+                style={{ marginLeft: 15, marginRight: 15 }}
+                titleStyle={{ fontSize: 20 }}
+              />
+            </List.Accordion>
+            <List.Accordion
+              title="Side effects"
+              style={{
+                marginLeft: 15,
+                marginRight: 15,
+                marginBottom: 5,
+                backgroundColor: colors.main,
+              }}
+              titleStyle={{
+                fontSize: 23,
+                fontFamily: "Roboto",
+                fontWeight: "400",
+                color: colors.dark,
+              }}
+            >
+              <List.Item
+                title={`${product.sideEffects}`}
+                titleNumberOfLines={60}
+                style={{ marginLeft: 15, marginRight: 15 }}
+                titleStyle={{ fontSize: 20 }}
+              />
+            </List.Accordion>
+            <List.Accordion
+              title="Ingredients"
+              titleStyle={{
+                fontSize: 23,
+                fontFamily: "Roboto",
+                fontWeight: "400",
+                color: colors.dark,
+              }}
+              style={{
+                marginLeft: 15,
+                marginRight: 15,
+                backgroundColor: colors.main,
+                marginBottom: 5,
+              }}
+            >
+              <List.Item
+                title={product.ingredients}
+                titleNumberOfLines={60}
+                style={{ marginLeft: 15, marginRight: 15 }}
+                titleStyle={{ fontSize: 20 }}
+              />
+            </List.Accordion>
+            <List.Accordion
+              title="Brands"
+              style={{
+                marginLeft: 15,
+                marginRight: 15,
+                backgroundColor: colors.main,
+                marginBottom: 5,
+              }}
+              titleStyle={{
+                fontSize: 23,
+                fontFamily: "Roboto",
+                fontWeight: "400",
+                color: colors.dark,
+              }}
+            >
+              {product.brand.map((brand, index) => (
+                <List.Item
+                  title={brand}
+                  key={index}
+                  style={{ marginLeft: 15, marginRight: 15 }}
+                  titleStyle={{ fontSize: 20 }}
+                />
+              ))}
+            </List.Accordion>
+            <List.Accordion
+              title="Measures"
+              style={{
+                marginLeft: 15,
+                marginRight: 15,
+                backgroundColor: colors.main,
+              }}
+              titleStyle={{
+                fontSize: 23,
+                fontFamily: "Roboto",
+                fontWeight: "400",
+                color: colors.dark,
+              }}
+            >
+              <List.Item
+                title={`${product.weight}g`}
+                titleNumberOfLines={60}
+                style={{ marginLeft: 15, marginRight: 15 }}
+                titleStyle={{ fontSize: 20 }}
+              />
+            </List.Accordion>
           </View>
         </SafeAreaView>
       </ScrollView>
