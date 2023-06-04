@@ -25,7 +25,7 @@ const HamburgerMenu = () => {
     setIsOpen(!isOpen);
     Animated.timing(animation, {
       toValue: isOpen ? 0 : 1,
-      duration: 300,
+      duration: 500,
       useNativeDriver: true,
     }).start();
   };
@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     width: "100%",
+    marginTop: 10,
   },
   header: {
     display: "flex",
@@ -148,11 +149,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Roboto",
     color: colors.dark,
-    fontSize: 23,
+    fontSize: 20,
     fontWeight: "500",
   },
   menuIcon: {
-    fontSize: 25,
+    fontSize: 23,
     color: colors.dark,
   },
   menuItemsContainer: {
