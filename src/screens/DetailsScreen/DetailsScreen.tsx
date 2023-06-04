@@ -8,6 +8,7 @@ import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import ProductInformation from "../../components/ProductInformation/ProductInformation";
 import { useAppSelector } from "../../redux/hooks";
 import Loader from "../../components/Loader/Loader";
+import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
 
 const DetailsScreen = (): JSX.Element => {
   const [showMenu, setShowMenu] = useState(false);
@@ -20,7 +21,6 @@ const DetailsScreen = (): JSX.Element => {
   return (
     <>
       {loading && <Loader />}
-      <Header />
       <Animated.View
         style={{
           flexGrow: 1,
@@ -37,65 +37,8 @@ const DetailsScreen = (): JSX.Element => {
           borderRadius: showMenu ? 15 : 0,
         }}
       >
-        <View
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexDirection: "row",
-            alignItems: "center",
-            backgroundColor: "#fff",
-            paddingLeft: 15,
-            paddingRight: 15,
-            paddingBottom: 15,
-          }}
-        >
-          <TouchableOpacity
-            onPress={() => {
-              Animated.timing(scaleValue, {
-                toValue: showMenu ? 1 : 0.88,
-                duration: 300,
-                useNativeDriver: true,
-              }).start();
+        <HamburgerMenu />
 
-              Animated.timing(offsetValue, {
-                toValue: showMenu ? 0 : 250,
-                duration: 300,
-                useNativeDriver: true,
-              }).start();
-
-              Animated.timing(closeButtonOffset, {
-                // YOur Random Value...
-                toValue: !showMenu ? -250 : 0,
-                duration: 300,
-                useNativeDriver: true,
-              }).start();
-
-              setShowMenu(!showMenu);
-            }}
-          >
-            <Icon
-              name="menu"
-              style={{ color: colors.main, fontSize: 30, marginTop: 10 }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigate.navigate("Home");
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                color: colors.dark,
-                fontSize: 30,
-                fontWeight: "700",
-                marginTop: 10,
-              }}
-            >
-              SCANNER
-            </Text>
-          </TouchableOpacity>
-        </View>
         <ProductInformation />
       </Animated.View>
     </>

@@ -6,6 +6,7 @@ import {
   View,
   TextInput,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import Header from "../../components/Header/Header";
 import colors from "../../styles/colors";
@@ -16,6 +17,7 @@ import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import useUser from "../../hooks/useUser/useUser";
 import { useAppSelector } from "../../redux/hooks";
 import Loader from "../../components/Loader/Loader";
+import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
 
 interface UserCredentials {
   email: string;
@@ -63,7 +65,6 @@ const LoginScreen = (): JSX.Element => {
   return (
     <>
       {loading && <Loader />}
-      <Header />
       <Animated.View
         style={{
           flexGrow: 1,
@@ -79,177 +80,123 @@ const LoginScreen = (): JSX.Element => {
           borderRadius: showMenu ? 15 : 0,
         }}
       >
-        <View
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexDirection: "row",
-            alignItems: "center",
-            backgroundColor: "#fff",
-            paddingLeft: 15,
-            paddingRight: 15,
-            paddingBottom: 15,
-          }}
-        >
-          <TouchableOpacity
-            onPress={() => {
-              Animated.timing(scaleValue, {
-                toValue: showMenu ? 1 : 0.88,
-                duration: 300,
-                useNativeDriver: true,
-              }).start();
-
-              Animated.timing(offsetValue, {
-                toValue: showMenu ? 0 : 250,
-                duration: 300,
-                useNativeDriver: true,
-              }).start();
-
-              Animated.timing(closeButtonOffset, {
-                // YOur Random Value...
-                toValue: !showMenu ? -250 : 0,
-                duration: 300,
-                useNativeDriver: true,
-              }).start();
-
-              setShowMenu(!showMenu);
-            }}
-          >
-            <Icon
-              name="menu"
-              style={{ color: colors.main, fontSize: 30, marginTop: 10 }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigate.navigate("Home");
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                color: colors.dark,
-                fontSize: 30,
-                fontWeight: "700",
-                marginTop: 10,
-              }}
-            >
-              SCANNER
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View
-          style={{
-            paddingLeft: 15,
-            paddingRight: 15,
-            paddingBottom: 15,
-            display: "flex",
-            gap: 100,
-            marginTop: 20,
-            marginBottom: 20,
-          }}
-        >
+        <HamburgerMenu />
+        <ScrollView>
           <View
             style={{
+              paddingLeft: 15,
+              paddingRight: 15,
+              paddingBottom: 15,
               display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 50,
+              gap: 100,
+              marginTop: 20,
+              marginBottom: 20,
             }}
           >
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                color: colors.dark,
-                fontSize: 35,
-                fontWeight: "700",
-                marginTop: 10,
-              }}
-            >
-              Login
-            </Text>
             <View
               style={{
-                flexDirection: "row",
-                borderBottomWidth: 1,
-                borderColor: colors.dark,
-                paddingBottom: 10,
-                gap: 15,
-                paddingLeft: 15,
-                paddingRight: 15,
-                width: "90%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 50,
               }}
             >
-              <IconEmail name="email" color={colors.main} size={25} />
-              <TextInput
-                value={userData.email}
-                testID="email"
-                placeholder="E-mail"
-                textContentType="username"
+              <Text
                 style={{
+                  fontFamily: "Roboto",
                   color: colors.dark,
-                  fontSize: 20,
-                  flex: 1,
+                  fontSize: 35,
+                  fontWeight: "700",
+                  marginTop: 10,
                 }}
-                onChangeText={(data: string) => {
-                  changeUserData(data, "email");
-                }}
-              />
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                borderBottomWidth: 1,
-                borderColor: colors.dark,
-                paddingBottom: 10,
-                gap: 15,
-                paddingLeft: 15,
-                paddingRight: 15,
-                width: "90%",
-              }}
-            >
-              <Icon name="lock" color={colors.main} size={25} />
-              <TextInput
-                value={userData.password}
-                secureTextEntry={true}
-                testID="password"
-                placeholder="Password"
-                textContentType="password"
+              >
+                Login
+              </Text>
+              <View
                 style={{
-                  color: colors.dark,
-                  fontSize: 20,
-                  flex: 1,
+                  flexDirection: "row",
+                  borderBottomWidth: 1,
+                  borderColor: colors.dark,
+                  paddingBottom: 10,
+                  gap: 15,
+                  paddingLeft: 15,
+                  paddingRight: 15,
+                  width: "90%",
                 }}
-                onChangeText={(data: string) => {
-                  changeUserData(data, "password");
+              >
+                <IconEmail name="email" color={colors.main} size={25} />
+                <TextInput
+                  value={userData.email}
+                  testID="email"
+                  placeholder="E-mail"
+                  textContentType="username"
+                  style={{
+                    color: colors.dark,
+                    fontSize: 20,
+                    flex: 1,
+                  }}
+                  onChangeText={(data: string) => {
+                    changeUserData(data, "email");
+                  }}
+                />
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  borderBottomWidth: 1,
+                  borderColor: colors.dark,
+                  paddingBottom: 10,
+                  gap: 15,
+                  paddingLeft: 15,
+                  paddingRight: 15,
+                  width: "90%",
                 }}
-              />
+              >
+                <Icon name="lock" color={colors.main} size={25} />
+                <TextInput
+                  value={userData.password}
+                  secureTextEntry={true}
+                  testID="password"
+                  placeholder="Password"
+                  textContentType="password"
+                  style={{
+                    color: colors.dark,
+                    fontSize: 20,
+                    flex: 1,
+                  }}
+                  onChangeText={(data: string) => {
+                    changeUserData(data, "password");
+                  }}
+                />
+              </View>
+              <TouchableOpacity
+                style={
+                  buttonDisabled
+                    ? loginStyles.buttonDisabled
+                    : loginStyles.button
+                }
+                onPress={onSubmit}
+              >
+                <Text testID="submitButton" style={{ fontSize: 23 }}>
+                  LOGIN
+                </Text>
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity
-              style={
-                buttonDisabled ? loginStyles.buttonDisabled : loginStyles.button
-              }
-              onPress={onSubmit}
-            >
-              <Text testID="submitButton" style={{ fontSize: 23 }}>
-                LOGIN
+            <TouchableOpacity>
+              <Text
+                style={{
+                  fontSize: 20,
+                  color: colors.main,
+                  fontFamily: "Roboto",
+                  textAlign: "center",
+                }}
+                onPress={() => navigate.navigate("Register")}
+              >
+                Not a member? Sign up now
               </Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity>
-            <Text
-              style={{
-                fontSize: 20,
-                color: colors.main,
-                fontFamily: "Roboto",
-                textAlign: "center",
-              }}
-              onPress={() => navigate.navigate("Register")}
-            >
-              Not a member? Sign up now
-            </Text>
-          </TouchableOpacity>
-        </View>
+        </ScrollView>
       </Animated.View>
     </>
   );

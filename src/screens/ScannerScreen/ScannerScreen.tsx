@@ -12,6 +12,7 @@ import Icon from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import IconTimer from "react-native-vector-icons/MaterialIcons";
+import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
 
 const ScannerScreen = (): JSX.Element => {
   const [showMenu, setShowMenu] = useState(false);
@@ -38,66 +39,8 @@ const ScannerScreen = (): JSX.Element => {
           borderRadius: showMenu ? 15 : 0,
         }}
       >
+        <HamburgerMenu />
         <ScrollView>
-          <View
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              flexDirection: "row",
-              alignItems: "center",
-              backgroundColor: "#fff",
-              paddingLeft: 15,
-              paddingRight: 15,
-              paddingBottom: 15,
-            }}
-          >
-            <TouchableOpacity
-              onPress={() => {
-                Animated.timing(scaleValue, {
-                  toValue: showMenu ? 1 : 0.88,
-                  duration: 300,
-                  useNativeDriver: true,
-                }).start();
-
-                Animated.timing(offsetValue, {
-                  toValue: showMenu ? 0 : 250,
-                  duration: 300,
-                  useNativeDriver: true,
-                }).start();
-
-                Animated.timing(closeButtonOffset, {
-                  // YOur Random Value...
-                  toValue: !showMenu ? -250 : 0,
-                  duration: 300,
-                  useNativeDriver: true,
-                }).start();
-
-                setShowMenu(!showMenu);
-              }}
-            >
-              <Icon
-                name="menu"
-                style={{ color: colors.main, fontSize: 30, marginTop: 10 }}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigate.navigate("Home");
-              }}
-            >
-              <Text
-                style={{
-                  fontFamily: "Roboto",
-                  color: colors.dark,
-                  fontSize: 30,
-                  fontWeight: "700",
-                  marginTop: 10,
-                }}
-              >
-                SCANNER
-              </Text>
-            </TouchableOpacity>
-          </View>
           <View
             style={{
               display: "flex",
