@@ -42,7 +42,7 @@ const SearchBar = (): JSX.Element => {
           alignItems: "center",
           gap: 1,
           flexDirection: "column",
-          marginTop: 1,
+          marginTop: 15,
         }}
       >
         <View
