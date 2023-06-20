@@ -13,13 +13,15 @@ import Icon from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import IconNoResults from "react-native-vector-icons/MaterialCommunityIcons";
 import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import useProduct from "../../hooks/useProduct/useProduct";
 import Loader from "../../components/Loader/Loader";
 import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
+import { deleteFavouriteProductsActionCreator } from "../../redux/features/productSlice/productSlice";
 
 const FavouriteProductsScreen = (): JSX.Element => {
   const [showMenu, setShowMenu] = useState(false);
+  const dispatch = useAppDispatch();
   const { loadProduct, loadFavouriteProducts } = useProduct();
   const offsetValue = useRef(new Animated.Value(0)).current;
   const scaleValue = useRef(new Animated.Value(1)).current;
@@ -40,7 +42,7 @@ const FavouriteProductsScreen = (): JSX.Element => {
 
   const handleDelete = (ean: string) => {
     deleteFromFavourites(user.email, ean);
-    loadFavouriteProducts(user.email);
+    dispatch(deleteFavouriteProductsActionCreator(ean));
   };
 
   return (

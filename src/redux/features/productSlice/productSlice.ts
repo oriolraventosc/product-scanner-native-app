@@ -44,9 +44,13 @@ const ProductSlice = createSlice({
       ...initialState,
       myProducts: [...action.payload],
     }),
-    deleteFavouriteProducts: (initialState) => ({
+    deleteFavouriteProducts: (initialState, action: PayloadAction<string>) => ({
       ...initialState,
-      myProducts: [],
+      myProducts: [
+        ...initialState.myProducts.filter(
+          (product) => product.ean !== action.payload
+        ),
+      ],
     }),
   },
 });
