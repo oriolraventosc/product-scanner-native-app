@@ -33,10 +33,15 @@ const FavouriteProductsScreen = (): JSX.Element => {
     loadProduct(id);
     navigate.navigate("ProductDetail");
   };
-
+  const { deleteFromFavourites } = useProduct();
   useEffect(() => {
     loadFavouriteProducts(user.email);
   }, [loadFavouriteProducts, user.email]);
+
+  const handleDelete = (ean: string) => {
+    deleteFromFavourites(user.email, ean);
+    loadFavouriteProducts(user.email);
+  };
 
   return (
     <>
@@ -129,6 +134,28 @@ const FavouriteProductsScreen = (): JSX.Element => {
                           >
                             {product.name.toUpperCase()}
                           </Text>
+                          <TouchableOpacity
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginBottom: 15,
+                            }}
+                          >
+                            <IconNoResults
+                              name="delete"
+                              style={{
+                                fontSize: 36,
+                                color: colors.dark,
+
+                                backgroundColor: colors.main,
+                                borderRadius: 5,
+                                padding: 10,
+                                textAlign: "center",
+                              }}
+                              onPress={() => handleDelete(product.ean)}
+                            />
+                          </TouchableOpacity>
                         </View>
                       </TouchableOpacity>
                     ))}

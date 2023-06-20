@@ -67,7 +67,45 @@ const useProduct = () => {
     },
     [REACT_APP_API_URL, dispatch]
   );
-  return { loadProducts, loadProduct, loadFavouriteProducts };
+
+  const addToFavourites = useCallback(
+    async (email: string, ean: string) => {
+      const url = `${REACT_APP_API_URL}product/add-to-favourites/${email}/${ean}`;
+      try {
+        dispatch(openLoadingActionCreator());
+        await axios.patch(url, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        dispatch(closeLoadingActionCreator());
+      } catch {
+        dispatch(closeLoadingActionCreator());
+      }
+    },
+    [REACT_APP_API_URL, dispatch]
+  );
+
+  const deleteFromFavourites = useCallback(
+    async (email: string, ean: string) => {
+      const url = `${REACT_APP_API_URL}product/delete-from-favourites/${email}/${ean}`;
+      try {
+        dispatch(openLoadingActionCreator());
+        await axios.patch(url, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        dispatch(closeLoadingActionCreator());
+      } catch {
+        dispatch(closeLoadingActionCreator());
+      }
+    },
+    [REACT_APP_API_URL, dispatch]
+  );
+  return {
+    loadProducts,
+    loadProduct,
+    loadFavouriteProducts,
+    addToFavourites,
+    deleteFromFavourites,
+  };
 };
 
 export default useProduct;
