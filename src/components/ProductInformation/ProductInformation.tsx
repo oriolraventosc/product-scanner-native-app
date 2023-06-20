@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import IconDeleteFavourite from "react-native-vector-icons/MaterialCommunityIcons";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -42,6 +42,11 @@ const ProductInformation = (): JSX.Element => {
     setFavourite(false);
   };
 
+  useEffect(() => {
+    searchFavouriteProduct("ean");
+    setFavourite(searchFavouriteProduct("ean"));
+    console.log(favourite);
+  });
   return (
     <>
       <ScrollView>
@@ -76,7 +81,7 @@ const ProductInformation = (): JSX.Element => {
             />
             {isFavourite && (
               <TouchableOpacity
-                style={{ position: "absolute", right: 30, top: 30 }}
+                style={{ position: "absolute", right: 30, top: 30, zIndex: 8 }}
               >
                 <IconDeleteFavourite
                   name="delete"
@@ -92,7 +97,7 @@ const ProductInformation = (): JSX.Element => {
                 />
               </TouchableOpacity>
             )}
-            {!isFavourite && (
+            {isFavourite !== true && (
               <TouchableOpacity
                 style={{ position: "absolute", right: 30, top: 30 }}
               >
