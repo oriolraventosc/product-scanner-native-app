@@ -18,6 +18,7 @@ import useProduct from "../../hooks/useProduct/useProduct";
 import Loader from "../../components/Loader/Loader";
 import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
 import { deleteFavouriteProductsActionCreator } from "../../redux/features/productSlice/productSlice";
+import ModalComponent from "../../components/Modal/Modal";
 
 const FavouriteProductsScreen = (): JSX.Element => {
   const [showMenu, setShowMenu] = useState(false);
@@ -30,6 +31,7 @@ const FavouriteProductsScreen = (): JSX.Element => {
   const user = useAppSelector((state) => state.userActions);
   const products = useAppSelector((state) => state.productActions.myProducts);
   const loading = useAppSelector((state) => state.uiActions.loading);
+  const { modal } = useAppSelector((state) => state.uiActions);
 
   const handlePress = (id: string) => {
     loadProduct(id);
@@ -47,6 +49,7 @@ const FavouriteProductsScreen = (): JSX.Element => {
 
   return (
     <>
+      {modal && <ModalComponent />}
       {loading && <Loader />}
       {user.isLogged === false && navigate.navigate("Login")}
       {user.isLogged && (

@@ -18,6 +18,7 @@ import useUser from "../../hooks/useUser/useUser";
 import { useAppSelector } from "../../redux/hooks";
 import Loader from "../../components/Loader/Loader";
 import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
+import ModalComponent from "../../components/Modal/Modal";
 
 interface UserCredentials {
   email: string;
@@ -31,6 +32,7 @@ const LoginScreen = (): JSX.Element => {
   const scaleValue = useRef(new Animated.Value(1)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
   const navigate = useNavigation<ScreenNavigationProp>();
+  const { modal } = useAppSelector((state) => state.uiActions);
   const initialUser: UserCredentials = {
     email: "",
     password: "",
@@ -64,6 +66,7 @@ const LoginScreen = (): JSX.Element => {
 
   return (
     <>
+      {modal && <ModalComponent />}
       {loading && <Loader />}
       <Animated.View
         style={{
