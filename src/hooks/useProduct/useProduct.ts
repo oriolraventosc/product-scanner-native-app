@@ -73,9 +73,7 @@ const useProduct = () => {
       const url = `${REACT_APP_API_URL}product/add-to-favourites/${email}/${ean}`;
       try {
         dispatch(openLoadingActionCreator());
-        await axios.patch(url, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        await axios.patch(url);
         dispatch(closeLoadingActionCreator());
       } catch {
         dispatch(closeLoadingActionCreator());
@@ -89,9 +87,9 @@ const useProduct = () => {
       const url = `${REACT_APP_API_URL}product/delete-from-favourites/${email}/${ean}`;
       try {
         dispatch(openLoadingActionCreator());
-        await axios.patch(url, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        await axios.patch(url);
+        loadFavouriteProducts(email);
+
         dispatch(closeLoadingActionCreator());
       } catch {
         dispatch(closeLoadingActionCreator());

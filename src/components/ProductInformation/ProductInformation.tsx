@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { useAppSelector } from "../../redux/hooks";
+import IconDeleteFavourite from "react-native-vector-icons/MaterialCommunityIcons";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { List } from "react-native-paper";
 import {
   Text,
@@ -14,16 +15,33 @@ import colors from "../../styles/colors";
 import { Dimensions } from "react-native";
 import { Accordion } from "react-native-paper/lib/typescript/src/components/List/List";
 import useProduct from "../../hooks/useProduct/useProduct";
+import { Product } from "../../types/types";
+import { deleteFavouriteProductsActionCreator } from "../../redux/features/productSlice/productSlice";
 
 const { width } = Dimensions.get("window");
 
 const ProductInformation = (): JSX.Element => {
+  const { deleteFromFavourites } = useProduct();
+  const dispatch = useAppDispatch();
+  const myProducts = useAppSelector((state) => state.productActions.myProducts);
   const product = useAppSelector((state) => state.productActions.product);
+  const searchFavouriteProduct = (property: keyof Product) => {
+    return myProducts.some((item) => item[property] === product.ean);
+  };
+  const favourite = searchFavouriteProduct("ean");
+  const [isFavourite, setFavourite] = useState(favourite);
   const user = useAppSelector((state) => state.userActions);
   const { addToFavourites } = useProduct();
   const handleFavourite = () => {
     addToFavourites(user.email, product.ean);
+    setFavourite(true);
   };
+  const handleDelete = (ean: string) => {
+    deleteFromFavourites(user.email, ean);
+    dispatch(deleteFavouriteProductsActionCreator(ean));
+    setFavourite(false);
+  };
+
   return (
     <>
       <ScrollView>
@@ -56,22 +74,43 @@ const ProductInformation = (): JSX.Element => {
                 uri: product.image,
               }}
             />
-            <TouchableOpacity
-              style={{ position: "absolute", right: 30, top: 30 }}
-            >
-              <Icon
-                name="favorite"
-                style={{
-                  fontSize: 36,
-                  color: colors.dark,
+            {isFavourite && (
+              <TouchableOpacity
+                style={{ position: "absolute", right: 30, top: 30 }}
+              >
+                <IconDeleteFavourite
+                  name="delete"
+                  style={{
+                    fontSize: 36,
+                    color: colors.dark,
 
-                  backgroundColor: colors.main,
-                  borderRadius: 5,
-                  padding: 10,
-                }}
-                onPress={() => handleFavourite()}
-              />
-            </TouchableOpacity>
+                    backgroundColor: colors.main,
+                    borderRadius: 5,
+                    padding: 10,
+                  }}
+                  onPress={() => handleDelete(product.ean)}
+                />
+              </TouchableOpacity>
+            )}
+            {!isFavourite && (
+              <TouchableOpacity
+                style={{ position: "absolute", right: 30, top: 30 }}
+              >
+                <Icon
+                  name="favorite"
+                  style={{
+                    fontSize: 36,
+                    color: colors.dark,
+
+                    backgroundColor: colors.main,
+                    borderRadius: 5,
+                    padding: 10,
+                  }}
+                  onPress={() => handleFavourite()}
+                />
+              </TouchableOpacity>
+            )}
+
             <Text
               style={{
                 paddingLeft: 15,
