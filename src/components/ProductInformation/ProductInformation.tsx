@@ -17,7 +17,6 @@ import { Accordion } from "react-native-paper/lib/typescript/src/components/List
 import useProduct from "../../hooks/useProduct/useProduct";
 import { Product } from "../../types/types";
 import { deleteFavouriteProductsActionCreator } from "../../redux/features/productSlice/productSlice";
-import Modal from "../Modal/Modal";
 
 const { width } = Dimensions.get("window");
 
@@ -35,19 +34,17 @@ const ProductInformation = (): JSX.Element => {
   const { addToFavourites } = useProduct();
   const handleFavourite = () => {
     addToFavourites(user.email, product.ean);
-    setFavourite(true);
+    setFavourite(!isFavourite);
   };
   const handleDelete = (ean: string) => {
     deleteFromFavourites(user.email, ean);
     dispatch(deleteFavouriteProductsActionCreator(ean));
-    setFavourite(false);
+    setFavourite(!isFavourite);
   };
 
   useEffect(() => {
-    searchFavouriteProduct("ean");
     setFavourite(searchFavouriteProduct("ean"));
-    console.log(favourite);
-  });
+  }, []);
   return (
     <>
       <ScrollView>
@@ -82,7 +79,8 @@ const ProductInformation = (): JSX.Element => {
             />
             {isFavourite && (
               <TouchableOpacity
-                style={{ position: "absolute", right: 30, top: 30, zIndex: 8 }}
+                style={{ position: "absolute", right: 30, top: 30 }}
+                onPress={() => handleDelete(product.ean)}
               >
                 <IconDeleteFavourite
                   name="delete"
@@ -94,13 +92,13 @@ const ProductInformation = (): JSX.Element => {
                     borderRadius: 5,
                     padding: 10,
                   }}
-                  onPress={() => handleDelete(product.ean)}
                 />
               </TouchableOpacity>
             )}
             {isFavourite !== true && (
               <TouchableOpacity
                 style={{ position: "absolute", right: 30, top: 30 }}
+                onPress={() => handleFavourite()}
               >
                 <Icon
                   name="favorite"
@@ -112,11 +110,9 @@ const ProductInformation = (): JSX.Element => {
                     borderRadius: 5,
                     padding: 10,
                   }}
-                  onPress={() => handleFavourite()}
                 />
               </TouchableOpacity>
             )}
-
             <Text
               style={{
                 paddingLeft: 15,

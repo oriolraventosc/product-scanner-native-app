@@ -9,7 +9,6 @@ import ProductInformation from "../../components/ProductInformation/ProductInfor
 import { useAppSelector } from "../../redux/hooks";
 import Loader from "../../components/Loader/Loader";
 import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
-import Modal from "../../components/Modal/Modal";
 
 const DetailsScreen = (): JSX.Element => {
   const [showMenu, setShowMenu] = useState(false);
@@ -18,11 +17,9 @@ const DetailsScreen = (): JSX.Element => {
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
   const navigate = useNavigation<ScreenNavigationProp>();
   const loading = useAppSelector((state) => state.uiActions.loading);
-  const { modal } = useAppSelector((state) => state.uiActions);
 
   return (
     <>
-      {console.log(modal)}
       {loading && <Loader />}
       <Animated.View
         style={{
@@ -41,7 +38,6 @@ const DetailsScreen = (): JSX.Element => {
         }}
       >
         <HamburgerMenu />
-        {modal && <Modal />}
 
         <ProductInformation />
       </Animated.View>
