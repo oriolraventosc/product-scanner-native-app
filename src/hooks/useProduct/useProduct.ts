@@ -77,11 +77,6 @@ const useProduct = () => {
         await axios.patch(url);
         dispatch(closeLoadingActionCreator());
       } catch {
-        dispatch(
-          openModalActionCreator(
-            "Login to add products to your favourites list!"
-          )
-        );
         dispatch(closeLoadingActionCreator());
       }
     },
@@ -98,11 +93,6 @@ const useProduct = () => {
 
         dispatch(closeLoadingActionCreator());
       } catch {
-        dispatch(
-          openModalActionCreator(
-            "Oops... An error ocurred while deleting product!"
-          )
-        );
         dispatch(closeLoadingActionCreator());
       }
     },
