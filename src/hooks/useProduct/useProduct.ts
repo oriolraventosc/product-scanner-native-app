@@ -10,6 +10,7 @@ import { REACT_APP_API_URL } from "@env";
 import {
   openLoadingActionCreator,
   closeLoadingActionCreator,
+  openModalActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
 
 const useProduct = () => {
@@ -75,7 +76,15 @@ const useProduct = () => {
         dispatch(openLoadingActionCreator());
         await axios.patch(url);
         dispatch(closeLoadingActionCreator());
+        dispatch(
+          openModalActionCreator("Product added to your favourites list!")
+        );
       } catch {
+        dispatch(
+          openModalActionCreator(
+            "Login to add products to your favourites list!"
+          )
+        );
         dispatch(closeLoadingActionCreator());
       }
     },
@@ -89,9 +98,19 @@ const useProduct = () => {
         dispatch(openLoadingActionCreator());
         await axios.patch(url);
         loadFavouriteProducts(email);
+        dispatch(
+          openModalActionCreator(
+            "Product deleted from your favourite products list!"
+          )
+        );
 
         dispatch(closeLoadingActionCreator());
       } catch {
+        dispatch(
+          openModalActionCreator(
+            "Oops... An error ocurred while deleting product!"
+          )
+        );
         dispatch(closeLoadingActionCreator());
       }
     },

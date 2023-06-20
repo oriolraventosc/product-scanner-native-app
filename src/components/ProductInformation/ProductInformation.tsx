@@ -17,6 +17,7 @@ import { Accordion } from "react-native-paper/lib/typescript/src/components/List
 import useProduct from "../../hooks/useProduct/useProduct";
 import { Product } from "../../types/types";
 import { deleteFavouriteProductsActionCreator } from "../../redux/features/productSlice/productSlice";
+import Modal from "../Modal/Modal";
 
 const { width } = Dimensions.get("window");
 

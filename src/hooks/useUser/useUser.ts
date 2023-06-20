@@ -7,6 +7,7 @@ import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import {
   closeLoadingActionCreator,
   openLoadingActionCreator,
+  openModalActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
 import axios from "axios";
 import decodeToken from "../../utils/decode/decode";
@@ -24,6 +25,7 @@ const useUser = () => {
       navigate.navigate("Login");
       dispatch(closeLoadingActionCreator());
     } catch {
+      dispatch(openModalActionCreator("Try registering again later!"));
       dispatch(closeLoadingActionCreator());
     }
   }, []);
@@ -48,6 +50,7 @@ const useUser = () => {
       navigate.navigate("Home");
       dispatch(closeLoadingActionCreator());
     } catch {
+      dispatch(openModalActionCreator("Wrong credentials!"));
       dispatch(closeLoadingActionCreator());
     }
   }, []);
