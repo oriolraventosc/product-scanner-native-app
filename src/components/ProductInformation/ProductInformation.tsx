@@ -13,11 +13,17 @@ import {
 import colors from "../../styles/colors";
 import { Dimensions } from "react-native";
 import { Accordion } from "react-native-paper/lib/typescript/src/components/List/List";
+import useProduct from "../../hooks/useProduct/useProduct";
 
 const { width } = Dimensions.get("window");
 
 const ProductInformation = (): JSX.Element => {
   const product = useAppSelector((state) => state.productActions.product);
+  const user = useAppSelector((state) => state.userActions);
+  const { addToFavourites } = useProduct();
+  const handleFavourite = () => {
+    addToFavourites(user.email, product.ean);
+  };
   return (
     <>
       <ScrollView>
@@ -63,6 +69,7 @@ const ProductInformation = (): JSX.Element => {
                   borderRadius: 5,
                   padding: 10,
                 }}
+                onPress={() => handleFavourite()}
               />
             </TouchableOpacity>
             <Text
