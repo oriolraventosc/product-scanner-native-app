@@ -76,9 +76,6 @@ const useProduct = () => {
         dispatch(openLoadingActionCreator());
         await axios.patch(url);
         dispatch(closeLoadingActionCreator());
-        dispatch(
-          openModalActionCreator("Product added to your favourites list!")
-        );
       } catch {
         dispatch(
           openModalActionCreator(
@@ -98,11 +95,6 @@ const useProduct = () => {
         dispatch(openLoadingActionCreator());
         await axios.patch(url);
         loadFavouriteProducts(email);
-        dispatch(
-          openModalActionCreator(
-            "Product deleted from your favourite products list!"
-          )
-        );
 
         dispatch(closeLoadingActionCreator());
       } catch {

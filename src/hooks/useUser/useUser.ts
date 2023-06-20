@@ -25,7 +25,9 @@ const useUser = () => {
       navigate.navigate("Login");
       dispatch(closeLoadingActionCreator());
     } catch {
-      dispatch(openModalActionCreator("Try registering again later!"));
+      dispatch(
+        openModalActionCreator("Remember to fill the needed information!")
+      );
       dispatch(closeLoadingActionCreator());
     }
   }, []);
@@ -50,7 +52,11 @@ const useUser = () => {
       navigate.navigate("Home");
       dispatch(closeLoadingActionCreator());
     } catch {
-      dispatch(openModalActionCreator("Wrong credentials!"));
+      dispatch(
+        openModalActionCreator(
+          "Wrong credentials! Type your email and password"
+        )
+      );
       dispatch(closeLoadingActionCreator());
     }
   }, []);
