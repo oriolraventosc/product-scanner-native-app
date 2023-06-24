@@ -27,6 +27,12 @@ describe("Given a Product reducer", () => {
         },
         productsList: [productMock],
         myProducts: [],
+        productsListLimit: 10,
+        myProductsLimit: 10,
+        statusProductsLimit: 10,
+        statusProductsList: [],
+        statusSupplementsList: [],
+        status: "",
       };
 
       const newState = ProductReducer(ProductInitialState, action);
@@ -42,6 +48,12 @@ describe("Given a Product reducer", () => {
         product: productMock,
         myProducts: [],
         productsList: [],
+        productsListLimit: 10,
+        myProductsLimit: 10,
+        statusProductsLimit: 10,
+        statusProductsList: [],
+        statusSupplementsList: [],
+        status: "",
       };
 
       const newState = ProductReducer(ProductInitialState, action);
@@ -69,6 +81,12 @@ describe("Given a Product reducer", () => {
         },
         myProducts: [productMock],
         productsList: [],
+        productsListLimit: 10,
+        myProductsLimit: 10,
+        statusProductsLimit: 10,
+        statusProductsList: [],
+        statusSupplementsList: [],
+        status: "",
       };
 
       const newState = ProductReducer(ProductInitialState, action);

@@ -22,10 +22,11 @@ const SearchBar = (): JSX.Element => {
   };
   const [product, setProduct] = useState("");
   const products = useAppSelector((state) => state.productActions.productsList);
+  const { productsListLimit } = useAppSelector((state) => state.productActions);
   const { loadProducts, loadProduct } = useProduct();
   useEffect(() => {
-    loadProducts(product);
-  }, [loadProducts, product]);
+    loadProducts(product, productsListLimit);
+  }, [loadProducts, product, productsListLimit]);
 
   return (
     <>
@@ -79,7 +80,7 @@ const SearchBar = (): JSX.Element => {
               paddingBottom: 20,
               borderRadius: 5,
             }}
-            onPress={() => loadProducts(product)}
+            onPress={() => loadProducts(product, productsListLimit)}
           >
             <Text
               style={{ fontSize: 20, fontFamily: "Roboto", fontWeight: "500" }}

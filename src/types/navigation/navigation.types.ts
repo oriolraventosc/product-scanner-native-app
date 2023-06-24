@@ -8,6 +8,7 @@ export type LogRootStackParamList = {
   ProductDetail: undefined;
   Register: undefined;
   Scanner: undefined;
+  Status: undefined;
 };
 
 export type ScreenNavigationProp =

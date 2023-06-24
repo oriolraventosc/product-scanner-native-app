@@ -5,6 +5,7 @@ const Routes = {
   register: "Register",
   myProducts: "MyProducts",
   scanner: "Scanner",
+  status: "Status",
 };
 
 export default Routes;

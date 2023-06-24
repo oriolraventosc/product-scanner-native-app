@@ -35,10 +35,11 @@ const FavouriteProductsScreen = (): JSX.Element => {
     loadProduct(id);
     navigate.navigate("ProductDetail");
   };
+  const { myProductsLimit } = useAppSelector((state) => state.productActions);
   const { deleteFromFavourites } = useProduct();
   useEffect(() => {
-    loadFavouriteProducts(user.email);
-  }, [loadFavouriteProducts, user.email]);
+    loadFavouriteProducts(user.email, myProductsLimit);
+  }, [loadFavouriteProducts, user.email, myProductsLimit]);
 
   const handleDelete = (ean: string) => {
     deleteFromFavourites(user.email, ean);
