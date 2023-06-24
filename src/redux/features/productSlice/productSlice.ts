@@ -5,6 +5,12 @@ interface ProductState {
   product: Product;
   myProducts: Product[];
   productsList: Product[];
+  productsListLimit: number;
+  myProductsLimit: number;
+  statusProductsLimit: number;
+  statusProductsList: Product[];
+  statusSupplementsList: Product[];
+  status: string;
 }
 
 export const ProductInitialState: ProductState = {
@@ -23,6 +29,12 @@ export const ProductInitialState: ProductState = {
   },
   myProducts: [],
   productsList: [],
+  productsListLimit: 10,
+  myProductsLimit: 10,
+  statusProductsLimit: 10,
+  statusProductsList: [],
+  statusSupplementsList: [],
+  status: "",
 };
 
 const ProductSlice = createSlice({
@@ -52,6 +64,21 @@ const ProductSlice = createSlice({
         ),
       ],
     }),
+    loadStatusProducts: (initialState, action: PayloadAction<Product[]>) => ({
+      ...initialState,
+      statusProductsList: [...action.payload],
+    }),
+    loadSupplementsProducts: (
+      initialState,
+      action: PayloadAction<Product[]>
+    ) => ({
+      ...initialState,
+      statusSupplementsList: [...action.payload],
+    }),
+    setStatus: (initialState, action: PayloadAction<string>) => ({
+      ...initialState,
+      status: action.payload,
+    }),
   },
 });
 
@@ -62,4 +89,7 @@ export const {
   loadProduct: loadProductInformationActionCreator,
   loadFavouriteProducts: loadFavouriteProductsActionCreator,
   deleteFavouriteProducts: deleteFavouriteProductsActionCreator,
+  loadStatusProducts: loadStatusProductsActionCreator,
+  loadSupplementsProducts: loadSupplementsProductsActionCreator,
+  setStatus: setStatusActionCreator,
 } = ProductSlice.actions;

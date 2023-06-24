@@ -49,6 +49,10 @@ const HamburgerMenu = () => {
     toggleMenu();
     navigate.navigate("MyProducts");
   };
+  const navigateToStatusSceen = () => {
+    toggleMenu();
+    navigate.navigate("Status");
+  };
 
   const removeTokenFromUser = () => {
     removeToken();
@@ -100,6 +104,12 @@ const HamburgerMenu = () => {
             <IconItems name="shoppingcart" style={styles.menuIcon} />
 
             <Text style={styles.menuItem}>My Products</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={navigateToStatusSceen}
+            style={styles.menuItemsContainer}
+          >
+            <Text style={styles.menuItem}>Status</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={isLogged ? removeTokenFromUser : navigateToLogin}

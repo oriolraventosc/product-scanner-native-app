@@ -3,6 +3,8 @@ import {
   loadProductsActionCreator,
   loadProductInformationActionCreator,
   loadFavouriteProductsActionCreator,
+  loadStatusProductsActionCreator,
+  loadSupplementsProductsActionCreator,
 } from "../../redux/features/productSlice/productSlice";
 import { useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -17,8 +19,8 @@ const useProduct = () => {
   const token = useAppSelector((state) => state.userActions.accessToken);
   const dispatch = useAppDispatch();
   const loadProducts = useCallback(
-    async (id: string) => {
-      const url = `${REACT_APP_API_URL}product/search?name=${id}`;
+    async (id: string, limit: number) => {
+      const url = `${REACT_APP_API_URL}product/search?name=${id}&limit=${limit}`;
       try {
         dispatch(openLoadingActionCreator());
         const response = await axios.get(url);
@@ -50,8 +52,8 @@ const useProduct = () => {
   );
 
   const loadFavouriteProducts = useCallback(
-    async (email: string) => {
-      const url = `${REACT_APP_API_URL}product/favourite-products/${email}`;
+    async (email: string, limit: number) => {
+      const url = `${REACT_APP_API_URL}product/favourite-products/${email}?limit=${limit}`;
       try {
         dispatch(openLoadingActionCreator());
         const response = await axios.get(url, {
@@ -85,12 +87,34 @@ const useProduct = () => {
 
   const deleteFromFavourites = useCallback(
     async (email: string, ean: string) => {
+      const { myProductsLimit } = useAppSelector(
+        (state) => state.productActions
+      );
       const url = `${REACT_APP_API_URL}product/delete-from-favourites/${email}/${ean}`;
       try {
         dispatch(openLoadingActionCreator());
         await axios.patch(url);
-        loadFavouriteProducts(email);
+        loadFavouriteProducts(email, myProductsLimit);
 
+        dispatch(closeLoadingActionCreator());
+      } catch {
+        dispatch(closeLoadingActionCreator());
+      }
+    },
+    [REACT_APP_API_URL, dispatch]
+  );
+
+  const searchProductsByStatus = useCallback(
+    async (status: string, limit: number) => {
+      const url = `${REACT_APP_API_URL}product/status-products-search?status=${status}&limit=${limit}`;
+      try {
+        dispatch(openLoadingActionCreator());
+        const response = await axios.get(url);
+        const apiResponse = response.data;
+        dispatch(loadStatusProductsActionCreator(apiResponse.products));
+        dispatch(
+          loadSupplementsProductsActionCreator(apiResponse.scanProducts)
+        );
         dispatch(closeLoadingActionCreator());
       } catch {
         dispatch(closeLoadingActionCreator());
@@ -104,6 +128,7 @@ const useProduct = () => {
     loadFavouriteProducts,
     addToFavourites,
     deleteFromFavourites,
+    searchProductsByStatus,
   };
 };
 
