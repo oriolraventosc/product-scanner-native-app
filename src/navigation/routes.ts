@@ -6,6 +6,7 @@ const Routes = {
   myProducts: "MyProducts",
   scanner: "Scanner",
   status: "Status",
+  statusProducts: "StatusProducts",
 };
 
 export default Routes;

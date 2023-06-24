@@ -25,6 +25,22 @@ const StatusScreen = (): JSX.Element => {
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
   const navigate = useNavigation<ScreenNavigationProp>();
   const dispatch = useAppDispatch();
+  const handleHappy = () => {
+    dispatch(setStatusActionCreator("Contento"));
+    navigate.navigate("StatusProducts");
+  };
+  const handleSad = () => {
+    dispatch(setStatusActionCreator("Triste"));
+    navigate.navigate("StatusProducts");
+  };
+  const handleTired = () => {
+    dispatch(setStatusActionCreator("Cansado"));
+    navigate.navigate("StatusProducts");
+  };
+  const handleSleepy = () => {
+    dispatch(setStatusActionCreator("Dormido"));
+    navigate.navigate("StatusProducts");
+  };
 
   return (
     <>
@@ -67,7 +83,7 @@ const StatusScreen = (): JSX.Element => {
               marginTop: 20,
               borderRadius: 10,
             }}
-            onPress={() => dispatch(setStatusActionCreator("Contento"))}
+            onPress={() => handleHappy()}
           >
             <Icon
               name="emoji-happy"
@@ -75,7 +91,7 @@ const StatusScreen = (): JSX.Element => {
             />
             <Text
               style={{
-                fontSize: 25,
+                fontSize: 22,
                 textAlign: "center",
                 color: colors.dark,
                 paddingTop: 20,
@@ -94,7 +110,7 @@ const StatusScreen = (): JSX.Element => {
               marginTop: 20,
               borderRadius: 10,
             }}
-            onPress={() => dispatch(setStatusActionCreator("Triste"))}
+            onPress={() => handleSad()}
           >
             <Icon
               name="emoji-sad"
@@ -102,7 +118,7 @@ const StatusScreen = (): JSX.Element => {
             />
             <Text
               style={{
-                fontSize: 25,
+                fontSize: 22,
                 textAlign: "center",
                 color: "#fff",
                 paddingTop: 20,
@@ -121,7 +137,7 @@ const StatusScreen = (): JSX.Element => {
               marginTop: 20,
               borderRadius: 10,
             }}
-            onPress={() => dispatch(setStatusActionCreator("Cansado"))}
+            onPress={() => handleTired()}
           >
             <IconSad
               name="tired"
@@ -129,7 +145,7 @@ const StatusScreen = (): JSX.Element => {
             />
             <Text
               style={{
-                fontSize: 25,
+                fontSize: 22,
                 textAlign: "center",
                 color: "#fff",
                 paddingTop: 20,
@@ -149,7 +165,7 @@ const StatusScreen = (): JSX.Element => {
               borderRadius: 10,
               marginBottom: 20,
             }}
-            onPress={() => dispatch(setStatusActionCreator("Dormido"))}
+            onPress={() => handleSleepy()}
           >
             <IconSleep
               name="sentiment-dissatisfied"
@@ -157,7 +173,7 @@ const StatusScreen = (): JSX.Element => {
             />
             <Text
               style={{
-                fontSize: 25,
+                fontSize: 22,
                 textAlign: "center",
                 color: colors.dark,
                 paddingTop: 20,
