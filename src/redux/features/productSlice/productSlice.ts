@@ -11,6 +11,7 @@ interface ProductState {
   statusProductsList: Product[];
   statusSupplementsList: Product[];
   status: string;
+  statusSupplementsLimit: number;
 }
 
 export const ProductInitialState: ProductState = {
@@ -35,6 +36,7 @@ export const ProductInitialState: ProductState = {
   statusProductsList: [],
   statusSupplementsList: [],
   status: "",
+  statusSupplementsLimit: 10,
 };
 
 const ProductSlice = createSlice({

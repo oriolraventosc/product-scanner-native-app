@@ -7,6 +7,7 @@ import RegisterScreen from "../../screens/RegisterScreen/RegisterScreen";
 import FavouriteProductsScreen from "../../screens/FavouriteProductsScreen/FavouriteProductsScreen";
 import ScannerScreen from "../../screens/ScannerScreen/ScannerScreen";
 import StatusScreen from "../../screens/statusScreen/statusScreen";
+import StatusProductsScreen from "../../screens/StatusProductsScreen/StatusProductsScreen";
 
 const StackNavigation = () => {
   const Stack = createNativeStackNavigator();
@@ -46,6 +47,11 @@ const StackNavigation = () => {
         <Stack.Screen
           name={Routes.status}
           component={StatusScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={Routes.statusProducts}
+          component={StatusProductsScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
