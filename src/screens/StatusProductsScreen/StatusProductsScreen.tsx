@@ -36,9 +36,25 @@ const StatusProductsScreen = (): JSX.Element => {
     statusSupplementsList,
     status,
   } = useAppSelector((state) => state.productActions);
+  const statusProductsAndSupplements = [
+    ...statusProductsList,
+    ...statusSupplementsList,
+  ];
   const handlePress = (id: string) => {
     loadProduct(id);
     navigate.navigate("ProductDetail");
+  };
+  const handleHappy = () => {
+    dispatch(setStatusActionCreator("Contento"));
+  };
+  const handleSad = () => {
+    dispatch(setStatusActionCreator("Triste"));
+  };
+  const handleTired = () => {
+    dispatch(setStatusActionCreator("Cansado"));
+  };
+  const handleSleepy = () => {
+    dispatch(setStatusActionCreator("Dormido"));
   };
   useEffect(() => {
     searchProductsByStatus(status, statusProductsLimit);
@@ -62,6 +78,80 @@ const StatusProductsScreen = (): JSX.Element => {
         }}
       >
         <HamburgerMenu />
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: 20,
+            justifyContent: "center",
+            marginBottom: 16,
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#7CFC83",
+              paddingTop: 14,
+              paddingBottom: 10,
+              borderRadius: 10,
+              paddingLeft: 15,
+              paddingRight: 15,
+            }}
+            onPress={() => handleHappy()}
+          >
+            <Icon
+              name="emoji-happy"
+              style={{ fontSize: 42, textAlign: "center", color: colors.dark }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#7449FC",
+              paddingTop: 14,
+              paddingBottom: 10,
+              borderRadius: 10,
+              paddingLeft: 15,
+              paddingRight: 15,
+            }}
+            onPress={() => handleSad()}
+          >
+            <Icon
+              name="emoji-sad"
+              style={{ fontSize: 42, textAlign: "center", color: "#fff" }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#573CB0",
+              paddingTop: 14,
+              paddingBottom: 10,
+              borderRadius: 10,
+              paddingLeft: 16,
+              paddingRight: 16,
+            }}
+            onPress={() => handleTired()}
+          >
+            <IconSad
+              name="tired"
+              style={{ fontSize: 42, textAlign: "center", color: "#fff" }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#E6D74E",
+              paddingTop: 10,
+              paddingBottom: 10,
+              borderRadius: 10,
+              paddingLeft: 10,
+              paddingRight: 10,
+            }}
+            onPress={() => handleSleepy()}
+          >
+            <IconSleep
+              name="sentiment-dissatisfied"
+              style={{ fontSize: 50, textAlign: "center", color: colors.dark }}
+            />
+          </TouchableOpacity>
+        </View>
         <ScrollView>
           <Text
             style={{
@@ -70,12 +160,11 @@ const StatusProductsScreen = (): JSX.Element => {
               textAlign: "center",
               fontWeight: "bold",
               color: colors.dark,
-              paddingTop: 20,
             }}
           >
-            PRODUCTOS
+            PRODUCTOS Y SUPLEMENTOS
           </Text>
-          {statusProductsList.length > 0 && (
+          {statusProductsAndSupplements.length > 0 && (
             <View
               style={{
                 marginBottom: 10,
@@ -86,7 +175,7 @@ const StatusProductsScreen = (): JSX.Element => {
                 marginTop: 10,
               }}
             >
-              {statusProductsList.map((product, index) => (
+              {statusProductsAndSupplements.map((product, index) => (
                 <TouchableOpacity
                   onPress={() => handlePress(product.name)}
                   key={index}
@@ -120,84 +209,6 @@ const StatusProductsScreen = (): JSX.Element => {
                     >
                       {product.name.toUpperCase()}
                     </Text>
-                    <TouchableOpacity
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginBottom: 15,
-                      }}
-                    ></TouchableOpacity>
-                  </View>
-                </TouchableOpacity>
-              ))}
-            </View>
-          )}
-          <Text
-            style={{
-              fontSize: 30,
-              fontFamily: "Roboto",
-              textAlign: "center",
-              fontWeight: "bold",
-              color: colors.dark,
-              paddingTop: 20,
-            }}
-          >
-            SUPLEMENTOS
-          </Text>
-          {statusSupplementsList.length > 0 && (
-            <View
-              style={{
-                marginBottom: 10,
-                gap: 10,
-                display: "flex",
-                marginTop: 15,
-                paddingLeft: 15,
-                paddingRight: 15,
-              }}
-            >
-              {statusSupplementsList.map((product, index) => (
-                <TouchableOpacity
-                  onPress={() => handlePress(product.name)}
-                  key={index}
-                >
-                  <View
-                    style={{
-                      borderColor: "#c0bcbc57",
-                      borderWidth: 2,
-                      position: "relative",
-                      maxWidth: 500,
-                      borderRadius: 5,
-                      width: "100%",
-                      paddingTop: 10,
-                      marginTop: 10,
-                    }}
-                  >
-                    <Image
-                      style={{ height: 300 }}
-                      source={{
-                        uri: product.image,
-                      }}
-                    />
-                    <Text
-                      style={{
-                        fontSize: 25,
-                        fontFamily: "Roboto",
-                        textAlign: "center",
-                        paddingBottom: 10,
-                        paddingTop: 10,
-                      }}
-                    >
-                      {product.name.toUpperCase()}
-                    </Text>
-                    <TouchableOpacity
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginBottom: 15,
-                      }}
-                    ></TouchableOpacity>
                   </View>
                 </TouchableOpacity>
               ))}
