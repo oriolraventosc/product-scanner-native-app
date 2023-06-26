@@ -87,7 +87,7 @@ const StatusScreen = (): JSX.Element => {
           >
             <Icon
               name="emoji-happy"
-              style={{ fontSize: 100, textAlign: "center", color: colors.dark }}
+              style={{ fontSize: 90, textAlign: "center", color: colors.dark }}
             />
             <Text
               style={{
@@ -114,7 +114,7 @@ const StatusScreen = (): JSX.Element => {
           >
             <Icon
               name="emoji-sad"
-              style={{ fontSize: 100, textAlign: "center", color: "#fff" }}
+              style={{ fontSize: 90, textAlign: "center", color: "#fff" }}
             />
             <Text
               style={{
@@ -141,7 +141,7 @@ const StatusScreen = (): JSX.Element => {
           >
             <IconSad
               name="tired"
-              style={{ fontSize: 100, textAlign: "center", color: "#fff" }}
+              style={{ fontSize: 90, textAlign: "center", color: "#fff" }}
             />
             <Text
               style={{
@@ -169,7 +169,7 @@ const StatusScreen = (): JSX.Element => {
           >
             <IconSleep
               name="sentiment-dissatisfied"
-              style={{ fontSize: 100, textAlign: "center", color: colors.dark }}
+              style={{ fontSize: 95, textAlign: "center", color: colors.dark }}
             />
             <Text
               style={{

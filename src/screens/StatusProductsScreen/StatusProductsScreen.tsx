@@ -100,7 +100,7 @@ const StatusProductsScreen = (): JSX.Element => {
           >
             <Icon
               name="emoji-happy"
-              style={{ fontSize: 42, textAlign: "center", color: colors.dark }}
+              style={{ fontSize: 40, textAlign: "center", color: colors.dark }}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -116,7 +116,7 @@ const StatusProductsScreen = (): JSX.Element => {
           >
             <Icon
               name="emoji-sad"
-              style={{ fontSize: 42, textAlign: "center", color: "#fff" }}
+              style={{ fontSize: 40, textAlign: "center", color: "#fff" }}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -132,7 +132,7 @@ const StatusProductsScreen = (): JSX.Element => {
           >
             <IconSad
               name="tired"
-              style={{ fontSize: 42, textAlign: "center", color: "#fff" }}
+              style={{ fontSize: 40, textAlign: "center", color: "#fff" }}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -148,7 +148,7 @@ const StatusProductsScreen = (): JSX.Element => {
           >
             <IconSleep
               name="sentiment-dissatisfied"
-              style={{ fontSize: 50, textAlign: "center", color: colors.dark }}
+              style={{ fontSize: 48, textAlign: "center", color: colors.dark }}
             />
           </TouchableOpacity>
         </View>
