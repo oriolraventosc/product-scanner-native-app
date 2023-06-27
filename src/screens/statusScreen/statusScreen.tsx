@@ -8,9 +8,9 @@ import {
 } from "react-native";
 import Header from "../../components/Header/Header";
 import colors from "../../styles/colors";
-import Icon from "react-native-vector-icons/Entypo";
-import IconSad from "react-native-vector-icons/FontAwesome5";
-import IconSleep from "react-native-vector-icons/MaterialIcons";
+import Icon from "react-native-vector-icons/Ionicons";
+import IconSad from "react-native-vector-icons/MaterialIcons";
+import IconSleep from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -82,11 +82,15 @@ const StatusScreen = (): JSX.Element => {
               paddingBottom: 50,
               marginTop: 20,
               borderRadius: 10,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 20,
             }}
             onPress={() => handleHappy()}
           >
             <Icon
-              name="emoji-happy"
+              name="happy-outline"
               style={{ fontSize: 90, textAlign: "center", color: colors.dark }}
             />
             <Text
@@ -94,7 +98,6 @@ const StatusScreen = (): JSX.Element => {
                 fontSize: 22,
                 textAlign: "center",
                 color: colors.dark,
-                paddingTop: 20,
               }}
             >
               CONTENTO
@@ -109,11 +112,15 @@ const StatusScreen = (): JSX.Element => {
               paddingBottom: 50,
               marginTop: 20,
               borderRadius: 10,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 20,
             }}
             onPress={() => handleSad()}
           >
             <Icon
-              name="emoji-sad"
+              name="sad-outline"
               style={{ fontSize: 90, textAlign: "center", color: "#fff" }}
             />
             <Text
@@ -121,7 +128,6 @@ const StatusScreen = (): JSX.Element => {
                 fontSize: 22,
                 textAlign: "center",
                 color: "#fff",
-                paddingTop: 20,
               }}
             >
               TRISTE
@@ -136,11 +142,15 @@ const StatusScreen = (): JSX.Element => {
               paddingBottom: 50,
               marginTop: 20,
               borderRadius: 10,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 20,
             }}
             onPress={() => handleTired()}
           >
             <IconSad
-              name="tired"
+              name="sentiment-neutral"
               style={{ fontSize: 90, textAlign: "center", color: "#fff" }}
             />
             <Text
@@ -148,7 +158,6 @@ const StatusScreen = (): JSX.Element => {
                 fontSize: 22,
                 textAlign: "center",
                 color: "#fff",
-                paddingTop: 20,
               }}
             >
               CANSADO
@@ -164,11 +173,15 @@ const StatusScreen = (): JSX.Element => {
               marginTop: 20,
               borderRadius: 10,
               marginBottom: 20,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 20,
             }}
             onPress={() => handleSleepy()}
           >
             <IconSleep
-              name="sentiment-dissatisfied"
+              name="sleep"
               style={{ fontSize: 95, textAlign: "center", color: colors.dark }}
             />
             <Text
@@ -176,7 +189,6 @@ const StatusScreen = (): JSX.Element => {
                 fontSize: 22,
                 textAlign: "center",
                 color: colors.dark,
-                paddingTop: 20,
               }}
             >
               DORMIDO

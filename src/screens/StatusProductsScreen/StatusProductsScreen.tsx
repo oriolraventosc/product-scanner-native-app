@@ -9,9 +9,9 @@ import {
 } from "react-native";
 import Header from "../../components/Header/Header";
 import colors from "../../styles/colors";
-import Icon from "react-native-vector-icons/Entypo";
-import IconSad from "react-native-vector-icons/FontAwesome5";
-import IconSleep from "react-native-vector-icons/MaterialIcons";
+import Icon from "react-native-vector-icons/Ionicons";
+import IconSad from "react-native-vector-icons/MaterialIcons";
+import IconSleep from "react-native-vector-icons/MaterialCommunityIcons";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -95,12 +95,15 @@ const StatusProductsScreen = (): JSX.Element => {
               borderRadius: 10,
               paddingLeft: 15,
               paddingRight: 15,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
             onPress={() => handleHappy()}
           >
             <Icon
-              name="emoji-happy"
-              style={{ fontSize: 40, textAlign: "center", color: colors.dark }}
+              name="happy-outline"
+              style={{ fontSize: 35, textAlign: "center", color: colors.dark }}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -111,12 +114,15 @@ const StatusProductsScreen = (): JSX.Element => {
               borderRadius: 10,
               paddingLeft: 15,
               paddingRight: 15,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
             onPress={() => handleSad()}
           >
             <Icon
-              name="emoji-sad"
-              style={{ fontSize: 40, textAlign: "center", color: "#fff" }}
+              name="sad-outline"
+              style={{ fontSize: 35, textAlign: "center", color: "#fff" }}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -125,14 +131,17 @@ const StatusProductsScreen = (): JSX.Element => {
               paddingTop: 14,
               paddingBottom: 10,
               borderRadius: 10,
-              paddingLeft: 16,
-              paddingRight: 16,
+              paddingLeft: 14,
+              paddingRight: 14,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
             onPress={() => handleTired()}
           >
             <IconSad
-              name="tired"
-              style={{ fontSize: 40, textAlign: "center", color: "#fff" }}
+              name="sentiment-neutral"
+              style={{ fontSize: 38, textAlign: "center", color: "#fff" }}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -141,14 +150,17 @@ const StatusProductsScreen = (): JSX.Element => {
               paddingTop: 10,
               paddingBottom: 10,
               borderRadius: 10,
-              paddingLeft: 10,
-              paddingRight: 10,
+              paddingLeft: 13,
+              paddingRight: 13,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
             onPress={() => handleSleepy()}
           >
             <IconSleep
-              name="sentiment-dissatisfied"
-              style={{ fontSize: 48, textAlign: "center", color: colors.dark }}
+              name="sleep"
+              style={{ fontSize: 40, textAlign: "center", color: colors.dark }}
             />
           </TouchableOpacity>
         </View>
