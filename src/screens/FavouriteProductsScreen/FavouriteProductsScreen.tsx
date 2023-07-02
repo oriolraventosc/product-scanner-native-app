@@ -144,6 +144,7 @@ const FavouriteProductsScreen = (): JSX.Element => {
                               alignItems: "center",
                               marginBottom: 15,
                             }}
+                            onPress={() => handleDelete(product.ean)}
                           >
                             <IconNoResults
                               name="delete"
@@ -156,7 +157,6 @@ const FavouriteProductsScreen = (): JSX.Element => {
                                 padding: 10,
                                 textAlign: "center",
                               }}
-                              onPress={() => handleDelete(product.ean)}
                             />
                           </TouchableOpacity>
                         </View>
