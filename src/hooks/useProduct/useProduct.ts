@@ -18,6 +18,7 @@ import {
 const useProduct = () => {
   const token = useAppSelector((state) => state.userActions.accessToken);
   const dispatch = useAppDispatch();
+  const { myProductsLimit } = useAppSelector((state) => state.productActions);
   const loadProducts = useCallback(
     async (id: string, limit: number) => {
       const url = `${REACT_APP_API_URL}product/search?name=${id}&limit=${limit}`;
@@ -87,9 +88,6 @@ const useProduct = () => {
 
   const deleteFromFavourites = useCallback(
     async (email: string, ean: string) => {
-      const { myProductsLimit } = useAppSelector(
-        (state) => state.productActions
-      );
       const url = `${REACT_APP_API_URL}product/delete-from-favourites/${email}/${ean}`;
       try {
         dispatch(openLoadingActionCreator());
@@ -97,7 +95,7 @@ const useProduct = () => {
         loadFavouriteProducts(email, myProductsLimit);
 
         dispatch(closeLoadingActionCreator());
-      } catch {
+      } catch (error) {
         dispatch(closeLoadingActionCreator());
       }
     },
