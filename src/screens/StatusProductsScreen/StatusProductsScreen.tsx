@@ -22,6 +22,7 @@ import useProduct from "../../hooks/useProduct/useProduct";
 import Loader from "../../components/Loader/Loader";
 
 const StatusProductsScreen = (): JSX.Element => {
+  const [productsShown, setShownProducts] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const offsetValue = useRef(new Animated.Value(0)).current;
   const scaleValue = useRef(new Animated.Value(1)).current;
@@ -45,20 +46,27 @@ const StatusProductsScreen = (): JSX.Element => {
     navigate.navigate("ProductDetail");
   };
   const handleHappy = () => {
+    showProducts();
     dispatch(setStatusActionCreator("Contento"));
   };
   const handleSad = () => {
+    showProducts();
     dispatch(setStatusActionCreator("Triste"));
   };
   const handleTired = () => {
+    showProducts();
     dispatch(setStatusActionCreator("Cansado"));
   };
   const handleSleepy = () => {
+    showProducts();
     dispatch(setStatusActionCreator("Dormido"));
   };
   useEffect(() => {
     searchProductsByStatus(status, statusProductsLimit);
   }, [status, statusProductsLimit]);
+  const showProducts = () => {
+    setShownProducts(true);
+  };
   return (
     <>
       {loading && <Loader />}
@@ -78,23 +86,29 @@ const StatusProductsScreen = (): JSX.Element => {
         }}
       >
         <HamburgerMenu />
+        <Text
+          style={{
+            fontSize: 30,
+            fontFamily: "Roboto",
+            textAlign: "center",
+            fontWeight: "500",
+            color: colors.dark,
+            paddingBottom: 20,
+          }}
+        >
+          ¿Cómo te encuentras hoy?
+        </Text>
         <View
           style={{
             display: "flex",
             flexDirection: "row",
-            gap: 20,
+            gap: 30,
             justifyContent: "center",
             marginBottom: 16,
           }}
         >
           <TouchableOpacity
             style={{
-              backgroundColor: "#7CFC83",
-              paddingTop: 14,
-              paddingBottom: 10,
-              borderRadius: 10,
-              paddingLeft: 15,
-              paddingRight: 15,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -103,17 +117,11 @@ const StatusProductsScreen = (): JSX.Element => {
           >
             <Icon
               name="happy-outline"
-              style={{ fontSize: 35, textAlign: "center", color: colors.dark }}
+              style={{ fontSize: 45, textAlign: "center", color: "#7CFC83" }}
             />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              backgroundColor: "#7449FC",
-              paddingTop: 14,
-              paddingBottom: 10,
-              borderRadius: 10,
-              paddingLeft: 15,
-              paddingRight: 15,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -122,17 +130,11 @@ const StatusProductsScreen = (): JSX.Element => {
           >
             <Icon
               name="sad-outline"
-              style={{ fontSize: 35, textAlign: "center", color: "#fff" }}
+              style={{ fontSize: 45, textAlign: "center", color: "#7449FC" }}
             />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              backgroundColor: "#573CB0",
-              paddingTop: 14,
-              paddingBottom: 10,
-              borderRadius: 10,
-              paddingLeft: 14,
-              paddingRight: 14,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -141,17 +143,11 @@ const StatusProductsScreen = (): JSX.Element => {
           >
             <IconSad
               name="sentiment-neutral"
-              style={{ fontSize: 38, textAlign: "center", color: "#fff" }}
+              style={{ fontSize: 48, textAlign: "center", color: "#573CB0" }}
             />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              backgroundColor: "#E6D74E",
-              paddingTop: 10,
-              paddingBottom: 10,
-              borderRadius: 10,
-              paddingLeft: 13,
-              paddingRight: 13,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -160,23 +156,12 @@ const StatusProductsScreen = (): JSX.Element => {
           >
             <IconSleep
               name="sleep"
-              style={{ fontSize: 40, textAlign: "center", color: colors.dark }}
+              style={{ fontSize: 50, textAlign: "center", color: "#E6D74E" }}
             />
           </TouchableOpacity>
         </View>
         <ScrollView>
-          <Text
-            style={{
-              fontSize: 30,
-              fontFamily: "Roboto",
-              textAlign: "center",
-              fontWeight: "bold",
-              color: colors.dark,
-            }}
-          >
-            PRODUCTOS Y SUPLEMENTOS
-          </Text>
-          {statusProductsAndSupplements.length > 0 && (
+          {productsShown === true && (
             <View
               style={{
                 marginBottom: 10,
@@ -187,6 +172,17 @@ const StatusProductsScreen = (): JSX.Element => {
                 marginTop: 10,
               }}
             >
+              <Text
+                style={{
+                  fontSize: 30,
+                  fontFamily: "Roboto",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  color: colors.dark,
+                }}
+              >
+                PRODUCTOS Y SUPLEMENTOS
+              </Text>
               {statusProductsAndSupplements.map((product, index) => (
                 <TouchableOpacity
                   onPress={() => handlePress(product.name)}
