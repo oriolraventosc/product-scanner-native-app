@@ -7,6 +7,7 @@ import {
   Text,
 } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
+import IconFeeling from "react-native-vector-icons/Zocial";
 import IconItems from "react-native-vector-icons/AntDesign";
 import colors from "../../styles/colors";
 import { useNavigation } from "@react-navigation/native";
@@ -92,14 +93,14 @@ const HamburgerMenu = () => {
             style={styles.menuItemsContainer}
           >
             <IconItems name="home" style={styles.menuIcon} />
-            <Text style={styles.menuItem}>Home</Text>
+            <Text style={styles.menuItem}>Inicio</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={navigateToScanner}
             style={styles.menuItemsContainer}
           >
             <IconItems name="scan1" style={styles.menuIcon} />
-            <Text style={styles.menuItem}>Scan Product</Text>
+            <Text style={styles.menuItem}>Escanear producto</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={navigateToFavouriteProducts}
@@ -107,19 +108,15 @@ const HamburgerMenu = () => {
           >
             <IconItems name="shoppingcart" style={styles.menuIcon} />
 
-            <Text style={styles.menuItem}>My Products</Text>
+            <Text style={styles.menuItem}>Mis productos</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={navigateToStatusSceen}
-            style={styles.menuItemsContainer}
-          >
-            <Text style={styles.menuItem}>Status</Text>
-          </TouchableOpacity>
+
           <TouchableOpacity
             onPress={navigateToStatusProductsScreen}
             style={styles.menuItemsContainer}
           >
-            <Text style={styles.menuItem}>Status Products</Text>
+            <IconFeeling name="statusnet" style={styles.menuIcon} />
+            <Text style={styles.menuItem}>¿Cómo te encuentras?</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={isLogged ? removeTokenFromUser : navigateToLogin}
@@ -127,7 +124,9 @@ const HamburgerMenu = () => {
           >
             <IconItems name="login" style={styles.menuIcon} />
 
-            <Text style={styles.menuItem}>{isLogged ? "Logout" : "Login"}</Text>
+            <Text style={styles.menuItem}>
+              {isLogged ? "Cerrar sesión" : "Iniciar sesión"}
+            </Text>
           </TouchableOpacity>
         </Animated.View>
       )}
