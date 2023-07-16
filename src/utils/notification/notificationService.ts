@@ -1,34 +1,12 @@
-import { Platform } from "react-native";
-import {
-  NotificationRequestInput,
-  scheduleNotificationAsync,
-} from "expo-notifications";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 
-const NotificationService = {
-  scheduleDailyNotification: async () => {
-    const notificationContent = {
-      identifier: "daily-notification",
-      title: "Daily Notification",
-      body: "This is a daily notification!",
-      ios: {
-        sound: true,
-      },
-      android: {
-        channelId: "daily-channel",
-        icon: "ic_launcher",
-      },
-      trigger: {
-        hour: 0,
-        minute: 41,
-        repeats: true,
-      },
-    };
-
-    await scheduleNotificationAsync({
-      content: notificationContent,
-      trigger: notificationContent.trigger,
-    });
-  },
+const useStatusProducts = () => {
+  const navigate = useNavigation<ScreenNavigationProp>();
+  const statusProducts = () => {
+    navigate.navigate("StatusProducts");
+  };
+  return { statusProducts };
 };
 
-export default NotificationService;
+export default useStatusProducts;

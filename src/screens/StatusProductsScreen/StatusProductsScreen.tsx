@@ -1,4 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { Provider as PaperProvider } from "react-native-paper";
 import {
   Animated,
   Text,
@@ -68,7 +70,7 @@ const StatusProductsScreen = (): JSX.Element => {
     setShownProducts(true);
   };
   return (
-    <>
+    <PaperProvider>
       {loading && <Loader />}
       <Animated.View
         style={{
@@ -224,7 +226,7 @@ const StatusProductsScreen = (): JSX.Element => {
           )}
         </ScrollView>
       </Animated.View>
-    </>
+    </PaperProvider>
   );
 };
 
