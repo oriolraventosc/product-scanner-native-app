@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { store } from "./src/redux/store";
 import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import StackNavigation from "./src/navigation/StackNavigation/StackNavigation";
-
 import { Provider as PaperProvider } from "react-native-paper";
+import Notification from "./src/components/Notification/Notification";
 
-const App = (): JSX.Element => {
+const App = () => {
   return (
-    <Provider store={store}>
-      <PaperProvider>
-        <NavigationContainer>
+    <NavigationContainer>
+      <Provider store={store}>
+        <PaperProvider>
+          <Notification />
           <StackNavigation />
-        </NavigationContainer>
-      </PaperProvider>
-    </Provider>
+        </PaperProvider>
+      </Provider>
+    </NavigationContainer>
   );
 };
 
