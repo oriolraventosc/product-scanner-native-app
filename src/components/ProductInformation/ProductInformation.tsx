@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import IconDeleteFavourite from "react-native-vector-icons/MaterialCommunityIcons";
+import IconCamera from "react-native-vector-icons/Entypo";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { List } from "react-native-paper";
 import {
@@ -65,18 +66,37 @@ const ProductInformation = (): JSX.Element => {
               backgroundColor: "#f5f5f5",
               width,
               left: -15,
-              paddingTop: 40,
             }}
           >
-            <Image
+            <View
               style={{
                 height: 400,
-                position: "relative",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
-              source={{
-                uri: product.image,
-              }}
+            >
+              <IconCamera
+                name="camera"
+                style={{
+                  fontSize: 80,
+                  color: colors.dark,
+                  borderRadius: 5,
+                  padding: 10,
+                }}
+              />
+              {/*
+            <Image
+            style={{
+              height: 400,
+              position: "relative",
+            }}
+            source={{
+              uri: product.image,
+            }}
             />
+          */}
+            </View>
             {isFavourite && (
               <TouchableOpacity
                 style={{ position: "absolute", right: 30, top: 30 }}
@@ -161,7 +181,7 @@ const ProductInformation = (): JSX.Element => {
                 textAlign: "center",
               }}
             >
-              Nutritional benefits
+              Beneficios nutricionales
             </Text>
 
             {product.benefits.map((benefit, index) => (
@@ -181,7 +201,7 @@ const ProductInformation = (): JSX.Element => {
               </Text>
             ))}
             <List.Accordion
-              title="How to use"
+              title="Cómo se usa?"
               style={{
                 marginLeft: 15,
                 marginRight: 15,
@@ -204,7 +224,7 @@ const ProductInformation = (): JSX.Element => {
               />
             </List.Accordion>
             <List.Accordion
-              title="Side effects"
+              title="Efectos secundarios"
               style={{
                 marginLeft: 15,
                 marginRight: 15,
@@ -226,7 +246,7 @@ const ProductInformation = (): JSX.Element => {
               />
             </List.Accordion>
             <List.Accordion
-              title="Ingredients"
+              title="Ingredientes"
               titleStyle={{
                 fontSize: 23,
                 fontFamily: "Roboto",
@@ -248,7 +268,7 @@ const ProductInformation = (): JSX.Element => {
               />
             </List.Accordion>
             <List.Accordion
-              title="Brands"
+              title="Dónde comprarlo?"
               style={{
                 marginLeft: 15,
                 marginRight: 15,
@@ -272,7 +292,7 @@ const ProductInformation = (): JSX.Element => {
               ))}
             </List.Accordion>
             <List.Accordion
-              title="Measures"
+              title="Medidas"
               style={{
                 marginLeft: 15,
                 marginRight: 15,

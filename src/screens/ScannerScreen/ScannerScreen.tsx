@@ -55,7 +55,7 @@ const ScannerScreen = (): JSX.Element => {
               style={{ fontSize: 150, color: colors.main }}
             />
             <Text style={{ fontSize: 30, color: colors.dark }}>
-              COMING SOON
+              DISPONIBLE PRONTO
             </Text>
           </View>
         </ScrollView>

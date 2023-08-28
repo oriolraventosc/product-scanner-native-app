@@ -113,7 +113,7 @@ const LoginScreen = (): JSX.Element => {
                   marginTop: 10,
                 }}
               >
-                Login
+                Iniciar sesión
               </Text>
               <View
                 style={{
@@ -160,7 +160,7 @@ const LoginScreen = (): JSX.Element => {
                   value={userData.password}
                   secureTextEntry={true}
                   testID="password"
-                  placeholder="Password"
+                  placeholder="Contraseña"
                   textContentType="password"
                   style={{
                     color: colors.dark,
@@ -181,7 +181,7 @@ const LoginScreen = (): JSX.Element => {
                 onPress={onSubmit}
               >
                 <Text testID="submitButton" style={{ fontSize: 23 }}>
-                  LOGIN
+                  INICIAR SESIÓN
                 </Text>
               </TouchableOpacity>
             </View>
@@ -195,7 +195,7 @@ const LoginScreen = (): JSX.Element => {
                 }}
                 onPress={() => navigate.navigate("Register")}
               >
-                Not a member? Sign up now
+                No eres miembro? Regístrate aquí
               </Text>
             </TouchableOpacity>
           </View>

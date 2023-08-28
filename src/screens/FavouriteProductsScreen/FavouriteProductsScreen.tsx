@@ -94,7 +94,7 @@ const FavouriteProductsScreen = (): JSX.Element => {
                     paddingTop: 10,
                   }}
                 >
-                  My products
+                  Mis productos
                 </Text>
                 {products.length > 0 && (
                   <View
@@ -178,7 +178,9 @@ const FavouriteProductsScreen = (): JSX.Element => {
                       name="selection-search"
                       style={{ fontSize: 150, color: colors.main }}
                     />
-                    <Text style={{ fontSize: 30 }}>0 products found...</Text>
+                    <Text style={{ fontSize: 30, textAlign: "center" }}>
+                      0 productos favoritos...
+                    </Text>
                   </View>
                 )}
               </View>

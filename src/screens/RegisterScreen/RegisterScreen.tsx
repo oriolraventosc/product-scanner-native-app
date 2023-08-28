@@ -118,7 +118,7 @@ const RegisterScreen = (): JSX.Element => {
                   marginTop: 10,
                 }}
               >
-                Register
+                Crear cuenta
               </Text>
               <View
                 style={{
@@ -136,7 +136,7 @@ const RegisterScreen = (): JSX.Element => {
                 <TextInput
                   value={userData.name}
                   testID="name"
-                  placeholder="Name"
+                  placeholder="Nombre"
                   textContentType="name"
                   style={{
                     color: colors.dark,
@@ -194,7 +194,7 @@ const RegisterScreen = (): JSX.Element => {
                   value={userData.password}
                   secureTextEntry={true}
                   testID="password"
-                  placeholder="Password"
+                  placeholder="Contraseña"
                   textContentType="password"
                   style={{
                     color: colors.dark,
@@ -215,7 +215,7 @@ const RegisterScreen = (): JSX.Element => {
                 onPress={onSubmit}
               >
                 <Text testID="submitButton" style={{ fontSize: 23 }}>
-                  REGISTER
+                  CREAR CUENTA
                 </Text>
               </TouchableOpacity>
             </View>
@@ -229,7 +229,7 @@ const RegisterScreen = (): JSX.Element => {
                 }}
                 onPress={() => navigate.navigate("Login")}
               >
-                Already a member? Login here
+                Ya eres miembro? Inicia sesión ahora
               </Text>
             </TouchableOpacity>
           </View>
