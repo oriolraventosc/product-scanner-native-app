@@ -65,7 +65,7 @@ const SearchBar = (): JSX.Element => {
               fontFamily: "Roboto",
               borderColor: colors.dark,
             }}
-            placeholder="Search here..."
+            placeholder="Escribe el nombre de un producto..."
             onChangeText={setProduct}
             value={product.toLowerCase()}
           />
@@ -85,7 +85,7 @@ const SearchBar = (): JSX.Element => {
             <Text
               style={{ fontSize: 20, fontFamily: "Roboto", fontWeight: "500" }}
             >
-              SEARCH
+              BUSCAR
             </Text>
           </TouchableOpacity>
         </View>
@@ -150,7 +150,7 @@ const SearchBar = (): JSX.Element => {
                 name="selection-search"
                 style={{ fontSize: 150, color: colors.main }}
               />
-              <Text style={{ fontSize: 30 }}>No results found...</Text>
+              <Text style={{ fontSize: 30 }}>No hay resultados...</Text>
             </View>
           )}
         </View>
