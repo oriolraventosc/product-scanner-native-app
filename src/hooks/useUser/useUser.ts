@@ -1,7 +1,7 @@
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { REACT_APP_API_URL } from "@env";
 import { useCallback } from "react";
-import { UserCredentials } from "../../types/types";
+import { UserCredentials, UserUpdateData } from "../../types/types";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import {
@@ -11,12 +11,16 @@ import {
 } from "../../redux/features/uiSlice/uiSlice";
 import axios from "axios";
 import decodeToken from "../../utils/decode/decode";
-import { loginActionCreator } from "../../redux/features/userSlice/userSlice";
+import {
+  loginActionCreator,
+  updateActionCreator,
+} from "../../redux/features/userSlice/userSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const useUser = () => {
   const navigate = useNavigation<ScreenNavigationProp>();
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.userActions);
   const register = useCallback(async (data: UserCredentials) => {
     const url = `${REACT_APP_API_URL}user/register`;
     dispatch(openLoadingActionCreator());
@@ -61,7 +65,20 @@ const useUser = () => {
     }
   }, []);
 
-  return { login, register };
+  const updateUser = useCallback(async (data: UserUpdateData) => {
+    const url = `${REACT_APP_API_URL}user/update-user/${user.email}`;
+    try {
+      dispatch(openLoadingActionCreator());
+      const response = await axios.patch(url, data);
+      const { email, name, password } = response.data;
+      dispatch(updateActionCreator({ ...user, email, name, password }));
+      dispatch(closeLoadingActionCreator());
+    } catch {
+      closeLoadingActionCreator();
+    }
+  }, []);
+
+  return { login, register, updateUser };
 };
 
 export default useUser;
