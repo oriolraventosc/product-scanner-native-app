@@ -9,6 +9,7 @@ export const userInitialState: UserState = {
   name: "",
   isLogged: false,
   favouriteProducts: [],
+  password: "",
 };
 
 const userSlice = createSlice({
@@ -23,10 +24,17 @@ const userSlice = createSlice({
     logout: () => ({
       ...userInitialState,
     }),
+    update: (initialState, action: PayloadAction<UserState>) => ({
+      ...initialState,
+      ...action.payload,
+    }),
   },
 });
 
 export const userReducer = userSlice.reducer;
 
-export const { login: loginActionCreator, logout: logoutActionCreator } =
-  userSlice.actions;
+export const {
+  login: loginActionCreator,
+  logout: logoutActionCreator,
+  update: updateActionCreator,
+} = userSlice.actions;

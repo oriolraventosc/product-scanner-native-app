@@ -18,6 +18,7 @@ export interface UserLoginData {
   email: string;
   name: string;
   favouriteProducts: Product[];
+  password?: string;
 }
 
 export interface UserState extends UserLoginData {
@@ -31,5 +32,11 @@ export interface UserCredentials {
 
 export interface JwtCustomPayload {
   id: string;
+  email: string;
+}
+
+export interface UserUpdateData {
+  name: string;
+  password: string;
   email: string;
 }
