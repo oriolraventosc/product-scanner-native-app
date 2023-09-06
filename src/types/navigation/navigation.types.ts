@@ -10,6 +10,7 @@ export type LogRootStackParamList = {
   Scanner: undefined;
   Status: undefined;
   StatusProducts: undefined;
+  User: undefined;
 };
 
 export type ScreenNavigationProp =

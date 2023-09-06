@@ -7,6 +7,7 @@ const Routes = {
   scanner: "Scanner",
   status: "Status",
   statusProducts: "StatusProducts",
+  user: "User",
 };
 
 export default Routes;

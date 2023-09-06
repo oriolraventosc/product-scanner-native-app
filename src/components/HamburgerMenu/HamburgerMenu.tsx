@@ -58,7 +58,10 @@ const HamburgerMenu = () => {
     toggleMenu();
     navigate.navigate("StatusProducts");
   };
-
+  const navigateToProfileScreen = () => {
+    toggleMenu();
+    navigate.navigate("User");
+  };
   const removeTokenFromUser = () => {
     removeToken();
   };
@@ -118,6 +121,15 @@ const HamburgerMenu = () => {
             <IconFeeling name="statusnet" style={styles.menuIcon} />
             <Text style={styles.menuItem}>¿Cómo te encuentras?</Text>
           </TouchableOpacity>
+          {isLogged && (
+            <TouchableOpacity
+              onPress={navigateToProfileScreen}
+              style={styles.menuItemsContainer}
+            >
+              <IconItems name="user" style={styles.menuIcon} />
+              <Text style={styles.menuItem}>Perfil</Text>
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             onPress={isLogged ? removeTokenFromUser : navigateToLogin}
             style={styles.menuItemsContainer}
