@@ -8,6 +8,7 @@ import FavouriteProductsScreen from "../../screens/FavouriteProductsScreen/Favou
 import ScannerScreen from "../../screens/ScannerScreen/ScannerScreen";
 import StatusScreen from "../../screens/statusScreen/statusScreen";
 import StatusProductsScreen from "../../screens/StatusProductsScreen/StatusProductsScreen";
+import UserDetailsScreen from "../../screens/UserDetailsScreen/UserDetailsScreen";
 
 const StackNavigation = () => {
   const Stack = createNativeStackNavigator();
@@ -53,6 +54,11 @@ const StackNavigation = () => {
           name={Routes.statusProducts}
           component={StatusProductsScreen}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={Routes.user}
+          options={{ headerShown: false }}
+          component={UserDetailsScreen}
         />
       </Stack.Navigator>
     </>
