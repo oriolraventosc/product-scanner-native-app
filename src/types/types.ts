@@ -44,3 +44,7 @@ export interface UserUpdateInformation {
   name: string;
   email: string;
 }
+
+export interface UserUpdatePassword {
+  password: string;
+}
