@@ -18,7 +18,7 @@ const NotificationComponent = () => {
     Notification.scheduleNotificationAsync({
       content: {
         title: "Cómo te encuentras?",
-        body: "Encuentra products según tu estado de ánimo",
+        body: "Encuentra productos según tu estado de ánimo",
       },
       trigger: { seconds: 5 },
     });

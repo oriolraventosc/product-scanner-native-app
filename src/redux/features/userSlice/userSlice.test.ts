@@ -56,12 +56,8 @@ describe("Given a userReducer", () => {
     test("Then it should change the user information", () => {
       const action = updateActionCreator({
         email: "example@gmail.com",
-        accessToken: "12345678910",
-        id: "12345678910",
-        isLogged: true,
+
         name: "example name",
-        favouriteProducts: [],
-        password: "example",
       });
       const initialState = {
         email: "example@gmail.com",

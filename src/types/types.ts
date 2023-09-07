@@ -37,6 +37,10 @@ export interface JwtCustomPayload {
 
 export interface UserUpdateData {
   name: string;
-  password: string;
+  email: string;
+}
+
+export interface UserUpdateInformation {
+  name: string;
   email: string;
 }

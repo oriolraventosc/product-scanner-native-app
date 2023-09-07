@@ -19,7 +19,7 @@ import { useAppSelector } from "../../redux/hooks";
 import Loader from "../../components/Loader/Loader";
 import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
 
-const UserDetailsScreen = (): JSX.Element => {
+const UserDetailsScreen = () => {
   const [showMenu, setShowMenu] = useState(false);
   const offsetValue = useRef(new Animated.Value(0)).current;
   const scaleValue = useRef(new Animated.Value(1)).current;
@@ -89,8 +89,13 @@ const UserDetailsScreen = (): JSX.Element => {
                 <Text style={styles.itemTitle}>Contraseña</Text>
                 <Text style={styles.item}>*************</Text>
               </View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigate.navigate("UpdateUser")}>
                 <Text style={styles.updateText}>Editar perfil</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={styles.updatePassword}>
+                  Restablecer contraseña
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -149,6 +154,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     borderRadius: 5,
     marginTop: 25,
+  },
+  updatePassword: {
+    fontSize: 17,
+    color: colors.main,
+    marginRight: 30,
+    marginLeft: 30,
+    textAlign: "center",
+    borderRadius: 5,
+    marginTop: 5,
   },
 });
 
