@@ -1,7 +1,11 @@
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { REACT_APP_API_URL } from "@env";
 import { useCallback } from "react";
-import { UserCredentials, UserUpdateData } from "../../types/types";
+import {
+  UserCredentials,
+  UserUpdateData,
+  UserUpdatePassword,
+} from "../../types/types";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import {
@@ -78,18 +82,19 @@ const useUser = () => {
     }
   }, []);
 
-  const loadUserInfo = useCallback(async () => {
-    const url = `${REACT_APP_API_URL}user/load-user/${user.email}`;
+  const updatePassword = useCallback(async (data: UserUpdatePassword) => {
+    const url = `${REACT_APP_API_URL}user/update-password/${user.email}`;
     try {
       dispatch(openLoadingActionCreator());
-
+      await axios.patch(url, data);
       dispatch(closeLoadingActionCreator());
+      navigate.navigate("User");
     } catch {
       dispatch(closeLoadingActionCreator());
     }
   }, []);
 
-  return { login, register, updateUser };
+  return { login, register, updateUser, updatePassword };
 };
 
 export default useUser;

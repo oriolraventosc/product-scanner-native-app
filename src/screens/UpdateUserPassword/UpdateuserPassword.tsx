@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   Animated,
   Text,
@@ -6,6 +6,7 @@ import {
   View,
   ScrollView,
   StyleSheet,
+  TextInput,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Header from "../../components/Header/Header";
@@ -18,16 +19,44 @@ import ProductInformation from "../../components/ProductInformation/ProductInfor
 import { useAppSelector } from "../../redux/hooks";
 import Loader from "../../components/Loader/Loader";
 import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
+import { UserUpdateInformation, UserUpdatePassword } from "../../types/types";
+import useUser from "../../hooks/useUser/useUser";
 
-const UserDetailsScreen = () => {
+const UpdateUserPassword = (): JSX.Element => {
+  const loading = useAppSelector((state) => state.uiActions.loading);
   const [showMenu, setShowMenu] = useState(false);
   const offsetValue = useRef(new Animated.Value(0)).current;
   const scaleValue = useRef(new Animated.Value(1)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
   const navigate = useNavigation<ScreenNavigationProp>();
-  const loading = useAppSelector((state) => state.uiActions.loading);
+  const { modal } = useAppSelector((state) => state.uiActions);
   const user = useAppSelector((state) => state.userActions);
+  const initialUser: UserUpdatePassword = {
+    password: "",
+  };
 
+  const [userData, setUserData] = useState(initialUser);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    setButtonDisabled(userData.password.length < 1);
+  }, [userData.password]);
+
+  const { updatePassword } = useUser();
+
+  const changeUserData = (text: string, identify: string) => {
+    setUserData({
+      ...userData,
+      [identify]: text,
+    });
+  };
+
+  const onSubmit = async () => {
+    const newUser = {
+      password: userData.password,
+    };
+    await updatePassword(newUser);
+  };
   return (
     <>
       {loading && <Loader />}
@@ -55,9 +84,22 @@ const UserDetailsScreen = () => {
               colors={["#fff", "#fff"]}
               style={styles.linearGradient}
             >
-              <TouchableOpacity onPress={() => navigate.navigate("Home")}>
-                <Icon name="arrow-back" style={styles.arrow} />
-              </TouchableOpacity>
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 15,
+                  marginBottom: 10,
+                }}
+              >
+                <TouchableOpacity onPress={() => navigate.navigate("User")}>
+                  <Icon name="arrow-back" style={styles.arrow} />
+                </TouchableOpacity>
+                <Text style={{ fontSize: 24, color: colors.dark }}>
+                  Restablecer contraseña
+                </Text>
+              </View>
               <View
                 style={{
                   display: "flex",
@@ -74,31 +116,49 @@ const UserDetailsScreen = () => {
             </LinearGradient>
             <View>
               <View style={styles.itemBox}>
-                <Text style={styles.itemTitle}>Nombre</Text>
-                <Text style={styles.item}>{user.name}</Text>
+                <Text style={styles.itemTitle}>Nueva contraseña</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    borderBottomWidth: 1,
+                    borderColor: colors.dark,
+                    paddingBottom: 5,
+                    marginLeft: 30,
+                    marginRight: 30,
+                  }}
+                >
+                  <TextInput
+                    value={userData.password}
+                    secureTextEntry={true}
+                    testID="password"
+                    placeholder="Contraseña"
+                    textContentType="password"
+                    style={{
+                      color: colors.dark,
+                      fontSize: 20,
+                      flex: 1,
+                    }}
+                    onChangeText={(data: string) => {
+                      changeUserData(data, "password");
+                    }}
+                  />
+                </View>
               </View>
-              <View style={styles.itemBox}>
-                <Text style={styles.itemTitle}>E-mail</Text>
-                <Text style={styles.item}>{user.email}</Text>
-              </View>
-              <View style={styles.itemBox}>
-                <Text style={styles.itemTitle}>Nivel</Text>
-                <Text style={styles.item}>Usuario</Text>
-              </View>
-              <View style={styles.itemBox}>
-                <Text style={styles.itemTitle}>Contraseña</Text>
-                <Text style={styles.item}>*************</Text>
-              </View>
-              <TouchableOpacity onPress={() => navigate.navigate("UpdateUser")}>
-                <Text style={styles.updateText}>Editar perfil</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => navigate.navigate("UpdatePassword")}
+              <View
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: 15,
+                }}
               >
-                <Text style={styles.updatePassword}>
-                  Restablecer contraseña
-                </Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  style={buttonDisabled ? styles.buttonDisabled : styles.button}
+                  onPress={onSubmit}
+                >
+                  <Text style={styles.updateText}>Restablecer</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -147,15 +207,7 @@ const styles = StyleSheet.create({
   },
   updateText: {
     fontSize: 20,
-    backgroundColor: colors.main,
     color: colors.dark,
-    marginRight: 30,
-    marginLeft: 30,
-    paddingTop: 10,
-    paddingBottom: 10,
-    textAlign: "center",
-    borderRadius: 5,
-    marginTop: 25,
   },
   updatePassword: {
     fontSize: 17,
@@ -166,6 +218,29 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 5,
   },
+  button: {
+    width: "85%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 5,
+    backgroundColor: colors.main,
+    color: colors.dark,
+    opacity: 1,
+    zIndex: 1,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  buttonDisabled: {
+    width: "85%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 5,
+    backgroundColor: "#d9d0d0a8",
+    color: colors.dark,
+    opacity: 0.3,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
 });
 
-export default UserDetailsScreen;
+export default UpdateUserPassword;
