@@ -90,7 +90,7 @@ const UpdateUserPassword = (): JSX.Element => {
                   flexDirection: "row",
                   alignItems: "center",
                   gap: 15,
-                  marginBottom: 10,
+                  marginBottom: 30,
                 }}
               >
                 <TouchableOpacity onPress={() => navigate.navigate("User")}>
@@ -99,19 +99,6 @@ const UpdateUserPassword = (): JSX.Element => {
                 <Text style={{ fontSize: 24, color: colors.dark }}>
                   Restablecer contraseña
                 </Text>
-              </View>
-              <View
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  paddingTop: 10,
-                  paddingBottom: 30,
-                }}
-              >
-                <View style={styles.circle}>
-                  <Text style={styles.text}>{user.name[0].toUpperCase()}</Text>
-                </View>
               </View>
             </LinearGradient>
             <View>
@@ -140,6 +127,32 @@ const UpdateUserPassword = (): JSX.Element => {
                     }}
                     onChangeText={(data: string) => {
                       changeUserData(data, "password");
+                    }}
+                  />
+                </View>
+              </View>
+              <View style={styles.itemBox}>
+                <Text style={styles.itemTitle}>Confirmar contraseña</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    borderBottomWidth: 1,
+                    borderColor: colors.dark,
+                    paddingBottom: 5,
+                    marginLeft: 30,
+                    marginRight: 30,
+                  }}
+                >
+                  <TextInput
+                    value={""}
+                    secureTextEntry={true}
+                    testID="password"
+                    placeholder="Contraseña"
+                    textContentType="password"
+                    style={{
+                      color: colors.dark,
+                      fontSize: 20,
+                      flex: 1,
                     }}
                   />
                 </View>
