@@ -9,6 +9,7 @@ import ScannerScreen from "../../screens/ScannerScreen/ScannerScreen";
 import StatusScreen from "../../screens/statusScreen/statusScreen";
 import StatusProductsScreen from "../../screens/StatusProductsScreen/StatusProductsScreen";
 import UserDetailsScreen from "../../screens/UserDetailsScreen/UserDetailsScreen";
+import UpdateUserInformation from "../../screens/UpdateUserInformation/UpdateUserInformation";
 
 const StackNavigation = () => {
   const Stack = createNativeStackNavigator();
@@ -59,6 +60,11 @@ const StackNavigation = () => {
           name={Routes.user}
           options={{ headerShown: false }}
           component={UserDetailsScreen}
+        />
+        <Stack.Screen
+          name={Routes.updateUser}
+          component={UpdateUserInformation}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </>

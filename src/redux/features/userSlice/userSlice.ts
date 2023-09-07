@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserState } from "../../../types/types";
+import { UserState, UserUpdateInformation } from "../../../types/types";
 import { UserLoginData } from "../../../types/types";
 
 export const userInitialState: UserState = {
@@ -16,18 +16,24 @@ const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
   reducers: {
-    login: (initialState, action: PayloadAction<UserLoginData>) => ({
-      ...initialState,
-      ...action.payload,
-      isLogged: true,
-    }),
-    logout: () => ({
-      ...userInitialState,
-    }),
-    update: (initialState, action: PayloadAction<UserState>) => ({
-      ...initialState,
-      ...action.payload,
-    }),
+    login: (state, action: PayloadAction<UserLoginData>) => {
+      return {
+        ...state,
+        ...action.payload,
+        isLogged: true,
+      };
+    },
+    logout: () => {
+      return { ...userInitialState };
+    },
+    update: (state, action: PayloadAction<UserUpdateInformation>) => {
+      return {
+        ...state,
+        isLogged: true,
+        name: action.payload.name,
+        email: action.payload.email,
+      };
+    },
   },
 });
 

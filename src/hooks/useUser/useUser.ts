@@ -69,12 +69,23 @@ const useUser = () => {
     const url = `${REACT_APP_API_URL}user/update-user/${user.email}`;
     try {
       dispatch(openLoadingActionCreator());
-      const response = await axios.patch(url, data);
-      const { email, name, password } = response.data;
-      dispatch(updateActionCreator({ ...user, email, name, password }));
+      await axios.patch(url, data);
+      dispatch(updateActionCreator(data));
       dispatch(closeLoadingActionCreator());
+      navigate.navigate("User");
     } catch {
       closeLoadingActionCreator();
+    }
+  }, []);
+
+  const loadUserInfo = useCallback(async () => {
+    const url = `${REACT_APP_API_URL}user/load-user/${user.email}`;
+    try {
+      dispatch(openLoadingActionCreator());
+
+      dispatch(closeLoadingActionCreator());
+    } catch {
+      dispatch(closeLoadingActionCreator());
     }
   }, []);
 

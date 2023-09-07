@@ -8,6 +8,8 @@ const Routes = {
   status: "Status",
   statusProducts: "StatusProducts",
   user: "User",
+  updateUser: "UpdateUser",
+  updatePassword: "UpdatePassword",
 };
 
 export default Routes;

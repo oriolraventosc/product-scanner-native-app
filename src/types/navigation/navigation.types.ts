@@ -11,6 +11,8 @@ export type LogRootStackParamList = {
   Status: undefined;
   StatusProducts: undefined;
   User: undefined;
+  UpdateUser: undefined;
+  UpdatePassword: undefined;
 };
 
 export type ScreenNavigationProp =
