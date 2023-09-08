@@ -81,6 +81,19 @@ const ProductSlice = createSlice({
       ...initialState,
       status: action.payload,
     }),
+    increaseLimitProductsList: (initialState) => ({
+      ...initialState,
+      productsListLimit: initialState.productsListLimit + 6,
+    }),
+    increaseLimitMyProductsList: (initialState) => ({
+      ...initialState,
+      myProductsLimit: initialState.myProductsLimit + 6,
+    }),
+    increaseLimitStatusProductsList: (initialState) => ({
+      ...initialState,
+      statusProductsLimit: initialState.statusProductsLimit + 6,
+      statusSupplementsLimit: initialState.statusSupplementsLimit + 6,
+    }),
   },
 });
 
@@ -94,4 +107,7 @@ export const {
   loadStatusProducts: loadStatusProductsActionCreator,
   loadSupplementsProducts: loadSupplementsProductsActionCreator,
   setStatus: setStatusActionCreator,
+  increaseLimitProductsList: increaseLimitProductsListActionCreator,
+  increaseLimitMyProductsList: increaseLimitMyProductsListActionCreator,
+  increaseLimitStatusProductsList: increaseLimitStatusProductsListActionCreator,
 } = ProductSlice.actions;

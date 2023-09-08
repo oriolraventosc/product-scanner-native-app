@@ -34,7 +34,7 @@ const useUser = () => {
       dispatch(closeLoadingActionCreator());
     } catch {
       dispatch(
-        openModalActionCreator("Remember to fill the needed information!")
+        openModalActionCreator("No te olvides de rellenar todos los campos!")
       );
       dispatch(closeLoadingActionCreator());
     }
@@ -62,7 +62,7 @@ const useUser = () => {
     } catch {
       dispatch(
         openModalActionCreator(
-          "Wrong credentials! Type your email and password"
+          "Credenciales incorrectas! Escribe tu e-mail y contraseña correctos"
         )
       );
       dispatch(closeLoadingActionCreator());

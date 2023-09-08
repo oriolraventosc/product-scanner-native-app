@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import IconCamera from "react-native-vector-icons/Entypo";
 import {
   View,
   TextInput,
@@ -10,11 +11,12 @@ import {
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { ScreenNavigationProp } from "../../types/navigation/navigation.types";
 import { useNavigation } from "@react-navigation/native";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import useProduct from "../../hooks/useProduct/useProduct";
 import colors from "../../styles/colors";
-
+import { increaseLimitProductsListActionCreator } from "../../redux/features/productSlice/productSlice";
 const SearchBar = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigation<ScreenNavigationProp>();
   const handlePress = (id: string) => {
     loadProduct(id);
@@ -26,7 +28,7 @@ const SearchBar = (): JSX.Element => {
   const { loadProducts, loadProduct } = useProduct();
   useEffect(() => {
     loadProducts(product, productsListLimit);
-  }, [loadProducts, product, productsListLimit]);
+  }, [loadProducts, productsListLimit]);
 
   return (
     <>
@@ -114,12 +116,24 @@ const SearchBar = (): JSX.Element => {
                       paddingTop: 10,
                     }}
                   >
-                    <Image
-                      style={{ height: 300 }}
-                      source={{
-                        uri: product.image,
+                    <View
+                      style={{
+                        height: 250,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
                       }}
-                    />
+                    >
+                      <IconCamera
+                        name="camera"
+                        style={{
+                          fontSize: 80,
+                          color: colors.dark,
+                          borderRadius: 5,
+                          padding: 10,
+                        }}
+                      />
+                    </View>
                     <Text
                       style={{
                         fontSize: 25,
@@ -135,6 +149,32 @@ const SearchBar = (): JSX.Element => {
                 </TouchableOpacity>
               ))}
             </View>
+          )}
+          {products.length > 1 && (
+            <TouchableOpacity
+              style={{
+                marginTop: 10,
+                backgroundColor: colors.light,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingTop: 20,
+                paddingBottom: 20,
+                borderRadius: 5,
+              }}
+              onPress={() => dispatch(increaseLimitProductsListActionCreator())}
+            >
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontFamily: "Roboto",
+                  fontWeight: "500",
+                  color: colors.dark,
+                }}
+              >
+                VER MÁS
+              </Text>
+            </TouchableOpacity>
           )}
           {products.length === 0 && (
             <View

@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import IconCamera from "react-native-vector-icons/Entypo";
 import {
   Animated,
   Text,
@@ -17,7 +18,10 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import useProduct from "../../hooks/useProduct/useProduct";
 import Loader from "../../components/Loader/Loader";
 import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
-import { deleteFavouriteProductsActionCreator } from "../../redux/features/productSlice/productSlice";
+import {
+  deleteFavouriteProductsActionCreator,
+  increaseLimitMyProductsListActionCreator,
+} from "../../redux/features/productSlice/productSlice";
 
 const FavouriteProductsScreen = (): JSX.Element => {
   const [showMenu, setShowMenu] = useState(false);
@@ -120,12 +124,24 @@ const FavouriteProductsScreen = (): JSX.Element => {
                             paddingTop: 10,
                           }}
                         >
-                          <Image
-                            style={{ height: 300 }}
-                            source={{
-                              uri: product.image,
+                          <View
+                            style={{
+                              height: 250,
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
                             }}
-                          />
+                          >
+                            <IconCamera
+                              name="camera"
+                              style={{
+                                fontSize: 80,
+                                color: colors.dark,
+                                borderRadius: 5,
+                                padding: 10,
+                              }}
+                            />
+                          </View>
                           <Text
                             style={{
                               fontSize: 25,
@@ -163,6 +179,34 @@ const FavouriteProductsScreen = (): JSX.Element => {
                       </TouchableOpacity>
                     ))}
                   </View>
+                )}
+                {products.length > 1 && (
+                  <TouchableOpacity
+                    style={{
+                      marginTop: 10,
+                      backgroundColor: colors.light,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      paddingTop: 20,
+                      paddingBottom: 20,
+                      borderRadius: 5,
+                    }}
+                    onPress={() =>
+                      dispatch(increaseLimitMyProductsListActionCreator())
+                    }
+                  >
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        fontFamily: "Roboto",
+                        fontWeight: "500",
+                        color: colors.dark,
+                      }}
+                    >
+                      VER MÁS
+                    </Text>
+                  </TouchableOpacity>
                 )}
                 {products.length === 0 && (
                   <View
