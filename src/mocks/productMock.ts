@@ -10,4 +10,6 @@ export const productMock = {
   status: "Healthy",
   howToUse: "",
   sideEffects: "",
+  keywords: [],
+  keywordsWithDescription: [],
 };
