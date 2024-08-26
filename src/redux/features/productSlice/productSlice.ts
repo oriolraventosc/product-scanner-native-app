@@ -27,6 +27,8 @@ export const ProductInitialState: ProductState = {
     status: "",
     sideEffects: "",
     howToUse: "",
+    keywords: [],
+    keywordsWithDescription: [],
   },
   myProducts: [],
   productsList: [],

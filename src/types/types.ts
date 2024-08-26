@@ -10,6 +10,13 @@ export interface Product {
   status: string;
   howToUse: string;
   sideEffects: string;
+  keywords: string[];
+  keywordsWithDescription: Keyword[];
+}
+
+export interface Keyword {
+  name: string;
+  description: string;
 }
 
 export interface UserLoginData {
