@@ -63,6 +63,7 @@ const ProductInformation = (): JSX.Element => {
             flexDirection: "column",
             marginTop: 1,
             marginBottom: 5,
+            zIndex: 1,
           }}
         >
           <View
@@ -101,123 +102,7 @@ const ProductInformation = (): JSX.Element => {
             />
           */}
             </View>
-            {isFavourite && (
-              <TouchableOpacity
-                style={{ position: "absolute", right: 30, top: 30 }}
-                onPress={() => handleDelete(product.ean)}
-              >
-                <IconDeleteFavourite
-                  name="delete"
-                  style={{
-                    fontSize: 36,
-                    color: colors.dark,
 
-                    backgroundColor: colors.main,
-                    borderRadius: 5,
-                    padding: 10,
-                  }}
-                />
-              </TouchableOpacity>
-            )}
-            {isFavourite !== true && (
-              <TouchableOpacity
-                style={{ position: "absolute", right: 30, top: 30 }}
-                onPress={() => handleFavourite()}
-              >
-                <Icon
-                  name="favorite"
-                  style={{
-                    fontSize: 36,
-                    color: colors.dark,
-
-                    backgroundColor: colors.main,
-                    borderRadius: 5,
-                    padding: 10,
-                  }}
-                />
-              </TouchableOpacity>
-            )}
-            {seeKeywords === false && (
-              <TouchableOpacity
-                style={{ position: "absolute", left: 30, top: 30 }}
-                onPress={() => handleKeywords(seeKeywords)}
-              >
-                <IconDeleteFavourite
-                  name="bookmark-plus"
-                  style={{
-                    fontSize: 36,
-                    color: colors.dark,
-
-                    backgroundColor: colors.main,
-                    borderRadius: 5,
-                    padding: 10,
-                  }}
-                />
-              </TouchableOpacity>
-            )}
-            {seeKeywords && (
-              <>
-                <TouchableOpacity
-                  style={{ position: "absolute", left: 30, top: 30 }}
-                  onPress={() => handleKeywords(seeKeywords)}
-                >
-                  <IconDeleteFavourite
-                    name="bookmark-plus"
-                    style={{
-                      fontSize: 36,
-                      color: colors.main,
-
-                      backgroundColor: colors.dark,
-                      borderRadius: 5,
-                      padding: 10,
-                    }}
-                  />
-                </TouchableOpacity>
-                <View
-                  style={{
-                    position: "absolute",
-                    paddingRight: "4%",
-                    top: 100,
-                    zIndex: 9999,
-                    width: "100%",
-                    paddingLeft: "4%",
-                    backgroundColor: colors.dark,
-                    paddingTop: "4%",
-                    paddingBottom: "4%",
-                    height: "100%",
-                  }}
-                >
-                  {product.keywordsWithDescription.map((item) => (
-                    <List.Accordion
-                      title={item.name}
-                      style={{
-                        paddingLeft: 15,
-                        paddingRight: 15,
-                        paddingBottom: 5,
-                        backgroundColor: colors.main,
-                      }}
-                      titleStyle={{
-                        fontSize: 23,
-                        fontFamily: "Roboto",
-                        fontWeight: "400",
-                        color: colors.dark,
-                      }}
-                      key={Math.random()}
-                    >
-                      <List.Item
-                        title={`${item.description}`}
-                        titleNumberOfLines={60}
-                        style={{
-                          backgroundColor: colors.main,
-                        }}
-                        titleStyle={{ fontSize: 20 }}
-                        key={Math.random()}
-                      />
-                    </List.Accordion>
-                  ))}
-                </View>
-              </>
-            )}
             <Text
               style={{
                 paddingLeft: 15,
@@ -245,14 +130,131 @@ const ProductInformation = (): JSX.Element => {
               {product.description}
             </Text>
           </View>
+          {isFavourite && (
+            <TouchableOpacity
+              style={{ position: "absolute", right: 30, top: 30 }}
+              onPress={() => handleDelete(product.ean)}
+            >
+              <IconDeleteFavourite
+                name="delete"
+                style={{
+                  fontSize: 36,
+                  color: colors.dark,
+
+                  backgroundColor: colors.main,
+                  borderRadius: 5,
+                  padding: 10,
+                }}
+              />
+            </TouchableOpacity>
+          )}
+          {isFavourite !== true && (
+            <TouchableOpacity
+              style={{ position: "absolute", right: 30, top: 30 }}
+              onPress={() => handleFavourite()}
+            >
+              <Icon
+                name="favorite"
+                style={{
+                  fontSize: 36,
+                  color: colors.dark,
+
+                  backgroundColor: colors.main,
+                  borderRadius: 5,
+                  padding: 10,
+                }}
+              />
+            </TouchableOpacity>
+          )}
+          {seeKeywords === false && (
+            <TouchableOpacity
+              style={{ position: "absolute", left: 30, top: 30 }}
+              onPress={() => handleKeywords(seeKeywords)}
+            >
+              <IconDeleteFavourite
+                name="bookmark-plus"
+                style={{
+                  fontSize: 36,
+                  color: colors.dark,
+
+                  backgroundColor: colors.main,
+                  borderRadius: 5,
+                  padding: 10,
+                }}
+              />
+            </TouchableOpacity>
+          )}
+          {seeKeywords && (
+            <>
+              <TouchableOpacity
+                style={{ position: "absolute", left: 30, top: 30 }}
+                onPress={() => handleKeywords(seeKeywords)}
+              >
+                <IconDeleteFavourite
+                  name="bookmark-plus"
+                  style={{
+                    fontSize: 36,
+                    color: "#FFFFFF",
+
+                    backgroundColor: colors.dark,
+                    borderRadius: 5,
+                    padding: 10,
+                  }}
+                />
+              </TouchableOpacity>
+              <View
+                style={{
+                  zIndex: 10,
+                  width: "100%",
+                  paddingTop: "4%",
+                  paddingBottom: "4%",
+                  height: "auto",
+                  paddingLeft: "4%",
+                  paddingRight: "4%",
+                  position: "absolute",
+                  top: 90,
+                }}
+              >
+                {product.keywordsWithDescription.map((item) => (
+                  <List.Accordion
+                    title={item.name}
+                    style={{
+                      paddingLeft: 15,
+                      paddingRight: 15,
+                      paddingBottom: 5,
+                      backgroundColor: colors.dark,
+                    }}
+                    titleStyle={{
+                      fontSize: 23,
+                      fontFamily: "Roboto",
+                      fontWeight: "400",
+                      color: colors.white,
+                    }}
+                    key={Math.random()}
+                  >
+                    <List.Item
+                      title={`${item.description}`}
+                      titleNumberOfLines={60}
+                      style={{
+                        backgroundColor: colors.dark,
+                      }}
+                      titleStyle={{ fontSize: 20, color: colors.white }}
+                      key={Math.random()}
+                    />
+                  </List.Accordion>
+                ))}
+              </View>
+            </>
+          )}
           <View
             style={{
-              backgroundColor: "#fff",
+              backgroundColor: "#ffffff",
               width,
               left: -15,
               paddingTop: 10,
               borderTopStartRadius: 20,
               borderTopEndRadius: 20,
+              zIndex: 5,
             }}
           >
             <Text
